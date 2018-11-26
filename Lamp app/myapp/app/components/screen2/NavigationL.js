@@ -6,7 +6,6 @@ export default class NavigationL extends Component {
         return(
             <View style={styles.container}>
                 <View style={styles.appleicons}/>
-                <View style={styles.buttonContainer}/>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
                     <Image style={styles.icons} 
                         source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
@@ -30,13 +29,6 @@ export default class NavigationL extends Component {
 const styles = StyleSheet.create({
     container: {
         
-    },
-    buttonContainer: {
-        backgroundColor: "rgba(255,255,255,0.15)",
-        height: 50,
-        width: 350,
-        position: "absolute",
-        top: 20,
     },
     appleicons: {
         backgroundColor: "rgba(0,0,0,0.1)",

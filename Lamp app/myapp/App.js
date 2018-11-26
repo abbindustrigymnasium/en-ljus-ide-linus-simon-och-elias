@@ -7,13 +7,13 @@ import ScreenLogin from "./app/components/screen2/ScreenLogin";
 import ScreenHowTo from "./app/components/screen3/ScreenHowTo";
 
 const StackNaviApp = createStackNavigator({
-    /*ScreenLogin: {
+    ScreenLogin: {
         screen: ScreenLogin,
         navigationOptions: {
             title: false,
             header: null,
         }
-    },*/
+    },
     ScreenHowTo: {
         screen: ScreenHowTo,
         navigationOptions: {

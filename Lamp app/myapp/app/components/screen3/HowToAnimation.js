@@ -34,12 +34,12 @@ export default class App extends Component {
                     Animated.parallel([
                         Animated.timing(this.state.opacity, {
                         toValue: 0,
-                        duration: 1500,
+                        duration: 1000,
                         useNativeDriver: true,
                     }),
                         Animated.timing(this.state.opacityfar, {
                             toValue: 0,
-                            duration: 1500,
+                            duration: 1000,
                             useNativeDriver: true,
                         }),
                         Animated.timing(this.state.yValue, {
