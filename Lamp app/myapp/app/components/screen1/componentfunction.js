@@ -1,18 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
-export default class Component1 extends React.Component {
-    static navigationOptions ={
-        title: "ScreenHome",
-    };
+export default class Componentfunction extends React.Component {
     render() {
-        this.props.navigation
-        var {navigate} = this.props.navigation;
         return (
 		<View>
             <Text> hi </Text>
-            <Button onPress={() => navigate("ScreenLogin", {name:"hi"})}>
-            </Button>
 		</View>
 		);
     }

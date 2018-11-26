@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, Button } from "react-native";
+import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity } from "react-native";
 import LoginFrom from "./LoginFrom";
 import NavigationL from "./NavigationL";
 
@@ -19,6 +19,9 @@ export default class Login extends Component {
     }
 
     render() {
+        if (!this.props.visible) {
+            return false;
+        }
         return (
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
                 <View style={styles.fromContainer}>
