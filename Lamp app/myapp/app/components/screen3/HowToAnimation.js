@@ -44,7 +44,7 @@ export default class App extends Component {
                         }),
                         Animated.timing(this.state.yValue, {
                             toValue: height - 325,
-                            duration: 1500,
+                            duration: 1000, //1500
                             esing: Easing.vertical,
                         }) ]).start(() => {
                             Animated.parallel([
