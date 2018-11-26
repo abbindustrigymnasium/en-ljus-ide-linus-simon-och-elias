@@ -3,10 +3,10 @@ const router = express.Router();
 
 var mysql = require("mysql");
 var connection = mysql.createConnection({
-    host : "localhost",
-    user : "root",
-    password : "",
-    database : "light"
+    host : "iot.abbindustrigymnasium.se",
+    user : "ljuside1",
+    password : "ytterplagg",
+    database : "ljuside1",
 });
 
 connection.connect(function(error) {
@@ -22,7 +22,7 @@ var CronJob = require("cron").CronJob;
 new CronJob("* * * * * *", function() {
     var GetLight = function () {
         return new Promise(function (resolve, reject) {
-            connection.query("SELECT * FROM light", function (error, result) { //switch???
+            connection.query("SELECT * FROM ddosmonster", function (error, result) { //switch???
                 if (error) {
                     return reject(error);
                 } else {
