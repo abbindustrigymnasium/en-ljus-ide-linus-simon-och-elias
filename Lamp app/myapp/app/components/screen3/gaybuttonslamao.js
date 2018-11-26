@@ -100,7 +100,7 @@ export default class App extends Component {
         }
         return (
             <View style={styles.container}>
-                <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
+                <LinearGradient colors={['#7d5fff', '#17c0eb', '#18dcff']} style={styles.container}>
                 <View style={styles.fromContainer}>
                     <NavigationI/>
                 </View>
@@ -125,15 +125,19 @@ export default class App extends Component {
                     {top:this.state.yValue},
                 ]}>
                 </Animated.Image>
-                <TouchableOpacity style={styles.button1}
-                    onPress={this._lampAnimation}
+                <TouchableOpacity
+                    onPress={this._lampAnimation} 
                 >
+                <LinearGradient colors={['#17c0eb', '#178beb']} style={styles.button1}>
                 <Text style={styles.buttonText}>Full Preview</Text>
+                </LinearGradient>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button2}
+                <TouchableOpacity
                     onPress={this._lampAnimation}
                 >
+                <LinearGradient colors={['#17c0eb', '#178beb']} style={styles.button2}>
                 <Text style={styles.buttonText}>Walkthrough</Text>
+                </LinearGradient>
                 </TouchableOpacity>
                 </LinearGradient>
             </View>
@@ -151,7 +155,6 @@ const styles = StyleSheet.create({
         marginTop: 290,
         alignSelf: "flex-start",
         left: 10,
-        backgroundColor: "rgba(0,0,0,0.15)",
         borderRadius: 7.5,
     },
     button2: {
@@ -159,7 +162,6 @@ const styles = StyleSheet.create({
         marginTop: -45,
         alignSelf: "flex-end",
         right: 10,
-        backgroundColor: "rgba(0,0,0,0.15)",
         borderRadius: 7.5,
     },
     buttonText: {

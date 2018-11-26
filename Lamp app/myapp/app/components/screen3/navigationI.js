@@ -6,19 +6,18 @@ export default class NavigationL extends Component {
         return(
             <View style={styles.container}>
                 <View style={styles.appleicons}/>
-                <View style={styles.buttonContainer}/>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
                     <Image style={styles.icons} 
-                        source={require("C:/Users/s8simoga/Documents/GitHub/en-ljus-ide-linus-simon-och-elias/Lamp app/myapp/app/img/home.png")}> 
+                        source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
                     </Image>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
                     <Image style={styles.icons1}
-                        source={require("C:/Users/s8simoga/Documents/GitHub/en-ljus-ide-linus-simon-och-elias/Lamp app/myapp/app/img/Logout.png")}> 
+                        source={{uri:"https://i.imgur.com/Ym3QcbY.png"}}> 
                     </Image>
                 </TouchableOpacity>
                 <Image style={styles.icons2}
-                    source={require("C:/Users/s8simoga/Documents/GitHub/en-ljus-ide-linus-simon-och-elias/Lamp app/myapp/app/img/Info.png")}> 
+                    source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}> 
                 </Image>
             </View>
         );
@@ -27,14 +26,6 @@ export default class NavigationL extends Component {
 
 const styles = StyleSheet.create({
     container: {
-
-    },
-    buttonContainer: {
-        backgroundColor: "rgba(255,255,255,0.15)",
-        height: 50,
-        width: 350,
-        position: "absolute",
-        top: 15,
     },
     appleicons: {
         backgroundColor: "rgba(0,0,0,0.1)",

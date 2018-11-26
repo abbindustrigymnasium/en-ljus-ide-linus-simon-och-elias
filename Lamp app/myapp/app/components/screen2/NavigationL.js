@@ -9,17 +9,17 @@ export default class NavigationL extends Component {
                 <View style={styles.buttonContainer}/>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
                     <Image style={styles.icons} 
-                        source={require("C:/Users/s8simoga/Documents/GitHub/en-ljus-ide-linus-simon-och-elias/Lamp app/myapp/app/img/home.png")}> 
+                        source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
                     </Image>
                 </TouchableOpacity>
 
                     <Image style={styles.icons1}
-                        source={require("C:/Users/s8simoga/Documents/GitHub/en-ljus-ide-linus-simon-och-elias/Lamp app/myapp/app/img/Logout.png")}> 
+                        source={{uri:"https://i.imgur.com/Ym3QcbY.png"}}> 
                     </Image>
 
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
                     <Image style={styles.icons2}
-                        source={require("C:/Users/s8simoga/Documents/GitHub/en-ljus-ide-linus-simon-och-elias/Lamp app/myapp/app/img/Info.png")}> 
+                        source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}> 
                     </Image>
                 </TouchableOpacity>
             </View>
