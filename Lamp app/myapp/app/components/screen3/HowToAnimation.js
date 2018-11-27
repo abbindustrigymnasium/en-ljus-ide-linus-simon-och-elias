@@ -18,7 +18,7 @@ export default class App extends Component {
 
     InfoAnimation = () => {
         Animated.timing(this.state.zIndex, {
-            toValue: 0,
+            toValue: 10,
             duration: 0,
             useNativeDriver: true,
         }).start(() => {
