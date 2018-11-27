@@ -3,8 +3,8 @@ typedef enum HandStates{
   Hand2,
   NoHand,
   NoHand2,
-  StrCheck
-  StrUpdate
+  StrCheck,
+  StrUpdate,
   Power
 };
 
@@ -28,7 +28,6 @@ void loop() {
   switch (HState){
     case Power:
     delay(100);
-    bool Powervalue 
     if (Powervalue = false) {
     HState = NoHand
     Serial.println("OFF")
@@ -44,7 +43,7 @@ void loop() {
       HState = Hand;
     } else {
       Serial.print("a");
-      HState = StrCheck;
+      HState = Power;
     }
   break;
     case StrCheck:
@@ -80,7 +79,7 @@ void loop() {
          HState = StrUpdate
          } else {
          Serial.print("StrLock")
-         AnalogWrite(DO_RLed, StrValue);
+         analogWrite(DO_RLed, StrValue);
          delay(100)
          Hstate = NoHand }
   break;
