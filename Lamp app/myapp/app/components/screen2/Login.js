@@ -49,7 +49,7 @@ export default class Login extends Component {
 
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
                         <Image style={styles.icons2}
-                            source={{uri:"https://i.imgur.com/h0k8Wop.png"}}> 
+                            source={{uri:"https://i.imgur.com/h0k8Wop.png"}}>
                         </Image>
                     </TouchableOpacity>
 

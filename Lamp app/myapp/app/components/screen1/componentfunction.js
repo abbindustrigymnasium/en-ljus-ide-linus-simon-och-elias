@@ -12,5 +12,5 @@ export default class Componentfunction extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
+    
 });
