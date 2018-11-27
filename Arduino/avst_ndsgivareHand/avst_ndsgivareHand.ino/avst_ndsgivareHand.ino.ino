@@ -5,15 +5,16 @@ typedef enum HandStates{
   NoHand2,
   StrCheck,
   StrUpdate,
-  Power
+  Power,
+  SensorPower,
 };
 
 HandStates HState;
 
-
 #define AI_Pot 0
 #define DO_RLed 14
 bool PowerValue = false;
+bool SensorSetting = true;
 int PotValue = 75;
 int StrValue = 0;
 
@@ -33,8 +34,10 @@ void loop() {
     HState = NoHand;
     Serial.println("OFF");
     } else { 
-    HState = StrCheck;
-    
+    HState = SensorPower;
+
+    case SensorPower:
+      if
     
     case NoHand:
       PotValue = analogRead(AI_Pot);
@@ -51,7 +54,7 @@ void loop() {
     case StrCheck:
     Serial.println(StrValue);
     delay(100); 
-    if (StrValue !=0) {
+    if (StrValue !=50) {
       HState = StrUpdate ;
     } else {
       Serial.print("StrUpdt");
@@ -73,7 +76,7 @@ void loop() {
     case StrUpdate:        
          Serial.println(StrValue);
          delay(100);
-         if (StrValue !=0) {;
+         if (StrValue !=50) {;
          HState = StrUpdate ;
          } else {
          Serial.print("StrLock");

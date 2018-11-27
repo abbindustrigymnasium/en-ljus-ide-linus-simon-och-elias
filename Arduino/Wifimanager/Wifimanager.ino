@@ -9,6 +9,7 @@
 
 String Lampname = "1";
 bool Powervalue = false;
+bool SensorValue = false;
 int Coldvalue = 0;
 int Hotvalue = 0; 
 int Strvalue = 0;
