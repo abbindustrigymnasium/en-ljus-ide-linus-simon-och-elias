@@ -13,8 +13,9 @@ HandStates HState;
 
 #define AI_Pot 0
 #define DO_RLed 14
-
+bool PowerValue = false;
 int PotValue = 75;
+int StrValue = 0;
 
 void setup() {
   pinMode(DO_RLed, OUTPUT);
@@ -28,13 +29,13 @@ void loop() {
   switch (HState){
     case Power:
     delay(100);
-    if (Powervalue = false) {
-    HState = NoHand
-    Serial.println("OFF")
+    if (PowerValue = false) {
+    HState = NoHand;
+    Serial.println("OFF");
     } else { 
-    HState = StrCheck
+    HState = StrCheck;
     
-    Hstate 
+    
     case NoHand:
       PotValue = analogRead(AI_Pot);
       Serial.println(PotValue);
@@ -46,19 +47,17 @@ void loop() {
       HState = Power;
     }
   break;
+  
     case StrCheck:
-    StrValue = change
-    Serial.println(StrValue)
+    Serial.println(StrValue);
     delay(100); 
-    if (StrValue != 50) {
-      HState = StrUpdate 
+    if (StrValue !=0) {
+      HState = StrUpdate ;
     } else {
       Serial.print("StrUpdt");
       HState = NoHand;
-    }
+    }    
   break;
-    
-  
     case Hand:
       PotValue = analogRead(AI_Pot);
       Serial.println(PotValue);
@@ -68,20 +67,20 @@ void loop() {
     } else {
       Serial.print("b");
       HState = Hand;
-      }
-    break;
-
-    case StrUpdate
-         StrValue = 
-         Serial.println(StrValue)
+    }    
+  break;
+  
+    case StrUpdate:        
+         Serial.println(StrValue);
          delay(100);
-         if (StrValue diff)
-         HState = StrUpdate
+         if (StrValue !=0) {;
+         HState = StrUpdate ;
          } else {
-         Serial.print("StrLock")
+         Serial.print("StrLock");
          analogWrite(DO_RLed, StrValue);
-         delay(100)
-         Hstate = NoHand }
+         delay(100); 
+         HState = NoHand;
+         }
   break;
     
     case NoHand2:
@@ -115,4 +114,5 @@ void loop() {
       }
   break;
   }
+ }
 }
