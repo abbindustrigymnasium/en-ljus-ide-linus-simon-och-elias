@@ -12,13 +12,13 @@ export default class App extends Component {
             yValue: new Animated.Value(150),
             opacity: new Animated.Value(0.4),
             opacityfar: new Animated.Value(0.15),
-            opacityshadow: new Animated.Value(0),
+            zIndex: new Animated.Value(-10),
         }
     }
 
-    _infoanimation = () => {
-        Animated.timing(this.state.opacityshadow, {
-            toValue: 0.75,
+    InfoAnimation = () => {
+        Animated.timing(this.state.zIndex, {
+            toValue: 0,
             duration: 0,
             useNativeDriver: true,
         }).start(() => {
@@ -54,7 +54,7 @@ export default class App extends Component {
                             useNativeDriver: true,
                         }),
                         Animated.timing(this.state.yValue, {
-                            toValue: height - 325,
+                            toValue: height - 290,
                             duration: 1000,
                             esing: Easing.vertical,
                         }) ]).start(() => {
@@ -86,7 +86,7 @@ export default class App extends Component {
                                             useNativeDriver: true,
                                         }),
                                         Animated.timing(this.state.yValue, {
-                                            toValue: height - 400,
+                                            toValue: height - 425,
                                             duration: 1000,
                                             esing: Easing.vertical,
                                         }) ]).start(() => {
@@ -111,20 +111,20 @@ export default class App extends Component {
         }
         return (
             <View style={styles.container}>
-                <Animated.View
+                <Animated.View 
                     style={[styles.shadow,
-                    {opacity:this.state.opacityshadow},
+                    {zIndex:this.state.zIndex},
                     ]}>
                 </Animated.View>
-                <TouchableOpacity onPress={this._infoanimation}>
-                    <Image style={styles.icons3}
-                        source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
-                    </Image>
-                </TouchableOpacity>
                 <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
                 <View style={styles.fromContainer}>
                     <NavigationI/>
                 </View>
+                <TouchableOpacity onPress={this.InfoAnimation}>
+                    <Image style={styles.icons3}
+                        source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
+                    </Image>
+                </TouchableOpacity>
                 <Image
                     style={styles.lamp}
                     source={{uri:"http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png"}}>
@@ -235,6 +235,5 @@ const styles = StyleSheet.create({
         width: 42,
         position: "absolute",
         right: 270,
-        top: 2,
     }
 });
