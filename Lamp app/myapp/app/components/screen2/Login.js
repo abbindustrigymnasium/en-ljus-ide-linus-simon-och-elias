@@ -22,7 +22,6 @@ export default class Login extends Component {
     InfoAnimation = () => {
         Animated.timing(this.state.zIndex, {
             toValue: 10,
-            duration: 0,
             useNativeDriver: true,
         }).start(() => {
 
@@ -35,65 +34,76 @@ export default class Login extends Component {
         }
         return (
             <View style={styles.container}>
-
+            
                 <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
 
-                <View style={styles.appleicons}/>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
-                    <Image style={styles.icons} 
-                        source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
-                    </Image>
-                </TouchableOpacity>
+                    <View style={styles.appleicons}/>
+
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
+                        <Image style={styles.icons} 
+                            source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
+                        </Image>
+                    </TouchableOpacity>
 
                     <Image style={styles.icons1}
                         source={{uri:"https://i.imgur.com/Ym3QcbY.png"}}> 
                     </Image>
 
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
-                    <Image style={styles.icons2}
-                        source={{uri:"https://i.imgur.com/h0k8Wop.png"}}> 
-                    </Image>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
+                        <Image style={styles.icons2}
+                            source={{uri:"https://i.imgur.com/h0k8Wop.png"}}> 
+                        </Image>
+                    </TouchableOpacity>
 
-                <KeyboardAvoidingView behavior="padding" style={styles.container}>
+                        <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
-                        <TouchableOpacity onPress={this.InfoAnimation}>
-                            <Image style={styles.icons3}
-                                source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
-                            </Image>
-                        </TouchableOpacity>
-                        <View style={styles.logoContainer}>
-                            <TouchableOpacity onPress={this.Load_New_Image}>
-                                <Image style={styles.logo} source={{uri: this.state.imageURL}}/>
+                            <TouchableOpacity onPress={this.InfoAnimation}>
+                                <Image style={styles.icons3}
+                                    source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
+                                </Image>
                             </TouchableOpacity>
-                            <Text style={styles.title}>En ljus ide</Text>
-                        </View>
-                        <View style={styles.container1}>
-                        <StatusBar barStyle="light-content"/>
-                <TextInput
-                placeholder="namn eller email"
-                placeholderTextColor="rgba(255,255,255,0.7)"
-                returnKeyType="next"
-                onSubmitEditing={() => this.passwordInput.focus()}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoCorrect={false}
-                style={styles.input}
-                />
-                <TextInput
-                placeholder="lösenord"
-                placeholderTextColor="rgba(255,255,255,0.7)"
-                returnKeyType="go"
-                secureTextEntry
-                style={styles.input}
-                ref={(input) => this.passwordInput = input}
-                />
-                <TouchableOpacity style={styles.buttonContainer}>
-                    <Text style={styles.buttonText}>LOGGA IN</Text>
-                </TouchableOpacity>
-                </View>
-                    </KeyboardAvoidingView>
+                            
+                            <View style={styles.logoContainer}>
+                                    <TouchableOpacity onPress={this.Load_New_Image}>
+                                        <Image style={styles.logo} source={{uri: this.state.imageURL}}/>
+                                    </TouchableOpacity>
+                                <Text style={styles.title}>En ljus ide</Text>
+                            </View>
+
+                            <View style={styles.container1}>
+
+                                <StatusBar barStyle="light-content"/>
+
+                                <TextInput
+                                    placeholder="namn eller email"
+                                    placeholderTextColor="rgba(255,255,255,0.7)"
+                                    returnKeyType="next"
+                                    onSubmitEditing={() => this.passwordInput.focus()}
+                                    keyboardType="email-address"
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                    style={styles.input}
+                                />
+
+                                <TextInput
+                                    placeholder="lösenord"
+                                    placeholderTextColor="rgba(255,255,255,0.7)"
+                                    returnKeyType="go"
+                                    secureTextEntry
+                                    style={styles.input}
+                                    ref={(input) => this.passwordInput = input}
+                                />
+
+                                <TouchableOpacity style={styles.buttonContainer}>
+                                    <Text style={styles.buttonText}>LOGGA IN</Text>
+                                </TouchableOpacity>
+
+                            </View>
+
+                        </KeyboardAvoidingView>
+
                 </LinearGradient>
+
             </View>
         );
     }
