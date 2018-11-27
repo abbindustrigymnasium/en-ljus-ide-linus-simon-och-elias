@@ -17,7 +17,7 @@ bool GottenValues = false;
       
 void ConnecttoDB(String input){
   
-      const int httpPort=3000;
+      const int httpPort=3001;
       const char*host="192.168.0.100";
 
       Serial.print("connecting to ");
