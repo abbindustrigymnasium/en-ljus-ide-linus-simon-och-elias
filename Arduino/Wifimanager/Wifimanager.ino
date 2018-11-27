@@ -8,8 +8,10 @@
 #include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
 
 String Lampname = "1";
-int Hardvalue = 0;
-int Strengthvalue = 0;
+bool Powervalue = false;
+int Coldvalue = 0;
+int Hotvalue = 0; 
+int Strvalue = 0;
 bool LampExist = false;
 bool GottenValues = false;
       
@@ -46,13 +48,15 @@ void ConnecttoDB(String input){
 String SendtoDB(String host){
   String type="POST";
   if(GottenValues==true) {
-    String url="/light/";
+    String url="/ddosmonster/";
       Serial.println("Skickar värde första gången");
       StaticJsonBuffer<300>jsonBuffer;
       JsonObject&root=jsonBuffer.createObject();
-      root["name"]=Lampname;
-      root["hard"]=Hardvalue;
-      root["strength"]=Strengthvalue;
+      root["Name"]=Lampname;
+      root["Power"]=Powervalue;
+      root["Hot"]=Hotvalue;
+      root["Cold"]=Coldvalue;
+      root["strength"]=Strvalue;
       String buffer;
       root.printTo(buffer);
       if(LampExist==true){
@@ -72,7 +76,7 @@ String SendtoDB(String host){
 }
 
 String GetfromDB(String host){
-  String url="/light/"+Lampname;
+  String url="/ddosmonster/"+Lampname;
   String Output="GET"+url+"HTTP/1.1\r\n"+
   "Host:"+host+"\r\n"+
   "\r\nConnection:close\r\n\r\n";
@@ -82,13 +86,17 @@ String GetfromDB(String host){
 void UpdateValues(String json){
   StaticJsonBuffer<400>jsonBuffer;
   JsonObject&root=jsonBuffer.parseObject(json);
-  String dataL=root["name"];
-    if(dataL!="none") {
-      int datah=root["hard"];
-      int datas=root["strength"];
-      Lampname=dataL;
-      Hardvalue=datah;
-      Strengthvalue=datas;
+  String data1=root["Name"];
+    if(data1!="none") {
+      bool data2=root["Power"];
+      int data3=root["Hot"];
+      int data4=root["Cold"];
+      int data5=root["Strength"];
+      Lampname=data1;
+      Powervalue=data2;
+      Hotvalue=data3;
+      Coldvalue=data4;
+      Strvalue=data5;
       LampExist=true;
     } else{
       String Mess=root["message"];
@@ -98,8 +106,8 @@ void UpdateValues(String json){
 }
 
 void UpdatingLamp(){
-  analogWrite(13, Strengthvalue);
-  Serial.println(Strengthvalue);
+  analogWrite(13, Strvalue);
+  Serial.println(Strvalue);
 }
 
 void setup() {

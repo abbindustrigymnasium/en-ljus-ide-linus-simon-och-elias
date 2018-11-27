@@ -3,6 +3,9 @@ typedef enum HandStates{
   Hand2,
   NoHand,
   NoHand2,
+  StrCheck
+  StrUpdate
+  Power
 };
 
 HandStates HState;
@@ -18,23 +21,44 @@ void setup() {
   pinMode(AI_Pot, INPUT);
   Serial.begin(9600);
   analogWrite(DO_RLed, PotValue);
-  HState = NoHand;
+  HState = Power;
 }
 
 void loop() {
   switch (HState){
+    case Power:
+    delay(100);
+    bool Powervalue 
+    if (Powervalue = false) {
+    HState = NoHand
+    Serial.println("OFF")
+    } else { 
+    HState = StrCheck
     
+    Hstate 
     case NoHand:
       PotValue = analogRead(AI_Pot);
       Serial.println(PotValue);
       delay(100);
     if (PotValue > 25)  {
       HState = Hand;
-    } else{
+    } else {
       Serial.print("a");
+      HState = StrCheck;
+    }
+  break;
+    case StrCheck:
+    StrValue = change
+    Serial.println(StrValue)
+    delay(100); 
+    if (StrValue != 50) {
+      HState = StrUpdate 
+    } else {
+      Serial.print("StrUpdt");
       HState = NoHand;
     }
   break;
+    
   
     case Hand:
       PotValue = analogRead(AI_Pot);
@@ -48,6 +72,19 @@ void loop() {
       }
     break;
 
+    case StrUpdate
+         StrValue = 
+         Serial.println(StrValue)
+         delay(100);
+         if (StrValue diff)
+         HState = StrUpdate
+         } else {
+         Serial.print("StrLock")
+         AnalogWrite(DO_RLed, StrValue);
+         delay(100)
+         Hstate = NoHand }
+  break;
+    
     case NoHand2:
       for (int q=0; q <= 50; q++){
         PotValue = analogRead(AI_Pot);
