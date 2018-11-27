@@ -9,7 +9,7 @@ export default class Login extends Component {
         super();
         this.state={
             imageURL : "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png",
-            zIndex: new Animated.Value(-10),
+            //zIndex: new Animated.Value(-10),
         }
     }
 
@@ -18,7 +18,7 @@ export default class Login extends Component {
             imageURL : "https://i.imgur.com/d3is5pq.png"
         })
     }
-
+/*
     InfoAnimation = () => {
         Animated.timing(this.state.zIndex, {
             toValue: 10,
@@ -27,7 +27,7 @@ export default class Login extends Component {
 
         });
     }
-
+*/
     render() {
         if (!this.props.visible) {
             return false;
@@ -37,31 +37,9 @@ export default class Login extends Component {
 
                 <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
 
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
-                        <Image style={styles.icons} 
-                            source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
-                        </Image>
-                    </TouchableOpacity>
-
-                    <Image style={styles.icons1}
-                        source={{uri:"https://i.imgur.com/Ym3QcbY.png"}}> 
-                    </Image>
-
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
-                        <Image style={styles.icons2}
-                            source={{uri:"https://i.imgur.com/h0k8Wop.png"}}>
-                        </Image>
-                    </TouchableOpacity>
-
                     <View style={styles.appleicons}/>
 
                         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-
-                            <TouchableOpacity onPress={this.InfoAnimation}>
-                                <Image style={styles.icons3}
-                                    source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
-                                </Image>
-                            </TouchableOpacity>
                             
                             <View style={styles.logoContainer}>
                                     <TouchableOpacity onPress={this.Load_New_Image}>
@@ -71,7 +49,26 @@ export default class Login extends Component {
                             </View>
 
                             <View style={styles.container1}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
+                                    <Image style={styles.icons} 
+                                        source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
+                                    </Image>
+                                </TouchableOpacity>
 
+                                <Image style={styles.icons1}
+                                    source={{uri:"https://i.imgur.com/Ym3QcbY.png"}}> 
+                                </Image>
+
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
+                                    <Image style={styles.icons2}
+                                        source={{uri:"https://i.imgur.com/h0k8Wop.png"}}>
+                                    </Image>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={this.InfoAnimation}>
+                                    <Image style={styles.icons3}
+                                        source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
+                                    </Image>
+                                </TouchableOpacity>
                                 <StatusBar barStyle="light-content"/>
 
                                 <TextInput
@@ -93,6 +90,7 @@ export default class Login extends Component {
                                     style={styles.input}
                                     ref={(input) => this.passwordInput = input}
                                 />
+                                
 
                                 <TouchableOpacity style={styles.buttonContainer}>
                                     <Text style={styles.buttonText}>LOGGA IN</Text>
@@ -132,18 +130,20 @@ const styles = StyleSheet.create({
         textAlign: "center",
         opacity: 0.9,
     },
+    /*
     shadow: { //gör det transparent någonstans idk kom på något
         backgroundColor: "rgba(0,0,0,0.75)",
         width: 1000,
         height: 1000,
         position: "absolute",
     },
+    */
     icons3: {
         height: 42,
         width: 42,
         position: "absolute",
-        right: 270,
-        top: 2,
+        right: 255,
+        top: -380,
     },
     appleicons: {
         backgroundColor: "rgba(0,0,0,0.1)",
@@ -153,23 +153,23 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         position: "absolute",
-        right: 10,
-        top: 22,
+        right: -9,
+        top: -380,
     },
     icons1: {
         height: 50,
         width: 50,
         position: "absolute",
-        right: 70,
+        right: 71,
         opacity: 0.5,
-        top: 22,
+        top: -356,
     },
     icons2: {
         height: 35,
         width: 33,
         position: "absolute",
-        right: 140,
-        top: 30,
+        right: 122,
+        top: -370,
     },
     input: {
         height: 40,

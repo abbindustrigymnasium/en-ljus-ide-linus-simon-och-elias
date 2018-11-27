@@ -1,6 +1,6 @@
 import React, {Component} from "react"; //nu äre uppdated
 import {StyleSheet, Image, Text, TouchableOpacity, View, Animated, Easing, Dimensions} from "react-native";
-import { LinearGradient } from 'expo';
+import { LinearGradient, Constants } from 'expo';
 var { width, height } = Dimensions.get("window");
 
 export default class HowToAnimation extends Component {
@@ -12,14 +12,14 @@ export default class HowToAnimation extends Component {
             yValue: new Animated.Value(150),
             opacity: new Animated.Value(0.4),
             opacityfar: new Animated.Value(0.15),
-            index: new Animated.Value(-10),
+            //index: new Animated.Value(-10),
         }
     }
-
+/*
     onPress=()=>{
         this.setState({index: index});
     }
-
+*/
     _lampAnimation = () => {
         Animated.timing(this.state.xValue, {
             toValue: width - 100,
@@ -99,17 +99,34 @@ export default class HowToAnimation extends Component {
                     });
                 }
 
+                /*
+                <View 
+                    style={[styles.shadow,
+                    {zIndex:this.state.index},
+                    ]}>
+                </View>
+
+                <View style={styles.container2}>
+                <LinearGradient
+                    colors={["#00fff", "#17c8ff", "#329bff", "#4c64ff", "#6536ff", "#8000ff"]}
+                    start={{x:0.0, y:1.0}} end={{x:1.0, y:1.0}}
+                    style={{ height: 48, width: 200, alignItems: "center", justifyContent: "center"}}
+                >
+                    <TouchableOpacity style={styles.buttonContainer}>
+                        <Text style={styles.buttonText2}>
+                            LOGIN
+                        </Text>
+                    </TouchableOpacity>
+                </LinearGradient>
+                </View>
+                */
+
     render () {
         if (!this.props.visible) {
             return false;
         }
         return (
             <View style={styles.container}>
-                <View 
-                    style={[styles.shadow,
-                    {zIndex:this.state.index},
-                    ]}>
-                </View>
                 <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
 
                 <View style={styles.appleicons}/>
@@ -154,11 +171,13 @@ export default class HowToAnimation extends Component {
                     {top:this.state.yValue},
                 ]}>
                 </Animated.Image>
+
                 <TouchableOpacity style={styles.button1}
                     onPress={this._lampAnimation}
                 >
                 <Text style={styles.buttonText}>Full Preview</Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity style={styles.button2}
                     onPress={this._lampAnimation}
                 >
@@ -231,12 +250,14 @@ const styles = StyleSheet.create({
         top: 60,
         zIndex: -2,
     },
+    /*
     shadow: { //gör det transparent någonstans idk kom på något
         backgroundColor: "rgba(0,0,0,0.75)",
         width: 1000,
         height: 1000,
         position: "absolute",
     },
+    */
     icons3: {
         height: 42,
         width: 42,
@@ -270,4 +291,25 @@ const styles = StyleSheet.create({
         top: 30,
         opacity: 0.5,
     },
+    /*
+    buttonContainer: {
+        width: 200,
+        alignItems: 'center',
+    },
+    buttonText2: {
+        textAlign: 'center',
+        backgroundColor: '#4C64FF',
+        padding: 15,
+        marginLeft: 1,
+        marginRight: 1,
+        width: 200,
+    },
+    container2: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: Constants.statusBarHeight,
+        backgroundColor: '#ecf0f1',
+    },
+    */
 });

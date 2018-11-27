@@ -3,7 +3,6 @@ import React from 'react';
 import Login from './Login';
 
 export default class ScreenLogin extends React.Component {
-
     constructor(props) {
 
         super(props);
