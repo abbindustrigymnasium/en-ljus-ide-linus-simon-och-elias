@@ -12,18 +12,12 @@ export default class App extends Component {
             yValue: new Animated.Value(150),
             opacity: new Animated.Value(0.4),
             opacityfar: new Animated.Value(0.15),
-            zIndex: new Animated.Value(-10),
+            index: new Animated.Value(-10),
         }
     }
 
-    InfoAnimation = () => {
-        Animated.timing(this.state.zIndex, {
-            toValue: 10,
-            duration: 0,
-            useNativeDriver: true,
-        }).start(() => {
-
-        });
+    onPress=()=>{
+        this.setState({index: index});
     }
 
     _lampAnimation = () => {
@@ -111,11 +105,11 @@ export default class App extends Component {
         }
         return (
             <View style={styles.container}>
-                <Animated.View 
+                <View 
                     style={[styles.shadow,
-                    {zIndex:this.state.zIndex},
+                    {zIndex:this.state.index},
                     ]}>
-                </Animated.View>
+                </View>
                 <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
                 <View style={styles.fromContainer}>
                     <NavigationI/>
@@ -228,7 +222,6 @@ const styles = StyleSheet.create({
         width: 1000,
         height: 1000,
         position: "absolute",
-        zIndex: 10,
     },
     icons3: {
         height: 42,

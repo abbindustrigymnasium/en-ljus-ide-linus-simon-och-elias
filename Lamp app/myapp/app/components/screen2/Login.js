@@ -41,27 +41,27 @@ export default class Login extends Component {
                     {zIndex:this.state.zIndex},
                     ]}>
                 </Animated.View>
-            <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
-            <KeyboardAvoidingView behavior="padding" style={styles.container}>
-                <View style={styles.fromContainer}>
-                    <NavigationL/>
-                </View>
-                <TouchableOpacity onPress={this.InfoAnimation}>
-                    <Image style={styles.icons3}
-                        source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
-                    </Image>
-                </TouchableOpacity>
-                <View style={styles.logoContainer}>
-                    <TouchableOpacity onPress={this.Load_New_Image}>
-                        <Image style={styles.logo} source={{uri: this.state.imageURL}}/>
-                    </TouchableOpacity>
-                    <Text style={styles.title}>En ljus ide</Text>
-                </View>
-                <View style={styles.fromContainer}>
-                    <LoginFrom/>
-                </View>
-            </KeyboardAvoidingView>
-            </LinearGradient>
+                <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
+                    <KeyboardAvoidingView behavior="padding" style={styles.container}>
+                        <View style={styles.fromContainer}>
+                            <NavigationL/>
+                        </View>
+                        <TouchableOpacity onPress={this.InfoAnimation}>
+                            <Image style={styles.icons3}
+                                source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
+                            </Image>
+                        </TouchableOpacity>
+                        <View style={styles.logoContainer}>
+                            <TouchableOpacity onPress={this.Load_New_Image}>
+                                <Image style={styles.logo} source={{uri: this.state.imageURL}}/>
+                            </TouchableOpacity>
+                            <Text style={styles.title}>En ljus ide</Text>
+                        </View>
+                        <View style={styles.fromContainer}>
+                            <LoginFrom/>
+                        </View>
+                    </KeyboardAvoidingView>
+                </LinearGradient>
             </View>
         );
     }
