@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, TouchableOpacity} from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 
 export default class NavigationL extends Component {
     render() {
@@ -18,7 +18,7 @@ export default class NavigationL extends Component {
 
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
                     <Image style={styles.icons2}
-                        source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}> 
+                        source={{uri:"https://i.imgur.com/h0k8Wop.png"}}> 
                     </Image>
                 </TouchableOpacity>
             </View>
@@ -49,10 +49,10 @@ const styles = StyleSheet.create({
         top: 22,
     },
     icons2: {
-        height: 45,
-        width: 45,
+        height: 33,
+        width: 33,
         position: "absolute",
-        right: 130,
-        top: 3,
+        right: 140,
+        top: 8,
     },
 });

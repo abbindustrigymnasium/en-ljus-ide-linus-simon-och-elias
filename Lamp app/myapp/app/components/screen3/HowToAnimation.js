@@ -12,7 +12,18 @@ export default class App extends Component {
             yValue: new Animated.Value(150),
             opacity: new Animated.Value(0.4),
             opacityfar: new Animated.Value(0.15),
+            opacityshadow: new Animated.Value(0),
         }
+    }
+
+    _infoanimation = () => {
+        Animated.timing(this.state.opacityshadow, {
+            toValue: 0.75,
+            duration: 0,
+            useNativeDriver: true,
+        }).start(() => {
+
+        });
     }
 
     _lampAnimation = () => {
@@ -44,7 +55,7 @@ export default class App extends Component {
                         }),
                         Animated.timing(this.state.yValue, {
                             toValue: height - 325,
-                            duration: 1000, //1500
+                            duration: 1000,
                             esing: Easing.vertical,
                         }) ]).start(() => {
                             Animated.parallel([
@@ -100,6 +111,16 @@ export default class App extends Component {
         }
         return (
             <View style={styles.container}>
+                <Animated.View
+                    style={[styles.shadow,
+                    {opacity:this.state.opacityshadow},
+                    ]}>
+                </Animated.View>
+                <TouchableOpacity onPress={this._infoanimation}>
+                    <Image style={styles.icons3}
+                        source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
+                    </Image>
+                </TouchableOpacity>
                 <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
                 <View style={styles.fromContainer}>
                     <NavigationI/>
@@ -199,7 +220,21 @@ const styles = StyleSheet.create({
         backgroundColor: "#fffa65",
         alignSelf: "center",
         position: "absolute",
-        top: 65,
+        top: 60,
         zIndex: -2,
     },
+    shadow: { //gör det transparent någonstans idk kom på något
+        backgroundColor: "rgba(0,0,0,0.75)",
+        width: 1000,
+        height: 1000,
+        position: "absolute",
+        zIndex: 10,
+    },
+    icons3: {
+        height: 42,
+        width: 42,
+        position: "absolute",
+        right: 270,
+        top: 2,
+    }
 });

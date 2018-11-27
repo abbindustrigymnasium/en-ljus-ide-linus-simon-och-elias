@@ -17,7 +17,7 @@ export default class NavigationL extends Component {
                     </Image>
                 </TouchableOpacity>
                 <Image style={styles.icons2}
-                    source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}> 
+                    source={{uri:"https://i.imgur.com/h0k8Wop.png"}}> 
                 </Image>
             </View>
         );
@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
         top: -2,
     },
     icons2: {
-        height: 45,
-        width: 45,
+        height: 33,
+        width: 33,
         position: "absolute",
-        right: 130,
-        top: 20,
+        right: 140,
+        top: 22,
         opacity: 0.5,
     },
 });

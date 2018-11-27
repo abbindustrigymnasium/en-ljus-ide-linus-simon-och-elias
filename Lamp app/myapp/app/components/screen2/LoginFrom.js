@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 
     input: {
         height: 40,
-        backgroundColor: "rgba(255,255,255,0.2)",
+        backgroundColor: "rgba(0,0,0,0.15)",
         marginBottom: 10,
         color: "#ffffff",
         paddingHorizontal: 10,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
 
     buttonContainer: {
-        backgroundColor: "rgba(255,255,255,0.2)",
+        backgroundColor: "rgba(0,0,0,0.15)",
         paddingVertical: 15,
         borderRadius: 7.5,
     },
