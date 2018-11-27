@@ -10,7 +10,7 @@ export default class Login extends Component {
         super();
         this.state={
             imageURL : "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png",
-            opacityshadow: new Animated.Value(0),
+            zIndex: new Animated.Value(-10),
         }
     }
 
@@ -20,9 +20,9 @@ export default class Login extends Component {
         })
     }
 
-    _infoanimation = () => {
-        Animated.timing(this.state.opacityshadow, {
-            toValue: 0.75,
+    InfoAnimation = () => {
+        Animated.timing(this.state.zIndex, {
+            toValue: 0,
             duration: 0,
             useNativeDriver: true,
         }).start(() => {
@@ -36,17 +36,17 @@ export default class Login extends Component {
         }
         return (
             <View style={styles.container}>
+                <Animated.View 
+                    style={[styles.shadow,
+                    {zIndex:this.state.zIndex},
+                    ]}>
+                </Animated.View>
             <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
                 <View style={styles.fromContainer}>
                     <NavigationL/>
                 </View>
-                <Animated.View
-                    style={[styles.shadow,
-                    {opacity:this.state.opacityshadow},
-                    ]}>
-                </Animated.View>
-                <TouchableOpacity onPress={this._infoanimation}> kan inte klicka
+                <TouchableOpacity onPress={this.InfoAnimation}>
                     <Image style={styles.icons3}
                         source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
                     </Image>
@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
         width: 1000,
         height: 1000,
         position: "absolute",
-        zIndex: 10,
     },
     icons3: {
         height: 42,
