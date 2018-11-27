@@ -1,13 +1,13 @@
 import React, {Component} from "react"; //nu äre uppdated
 import {StyleSheet, Image, Text, TouchableOpacity, View, Animated, Easing, Dimensions} from "react-native";
-import NavigationI from "./NavigationI";
 import { LinearGradient } from 'expo';
 var { width, height } = Dimensions.get("window");
 
-export default class App extends Component {
+export default class HowToAnimation extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            navigation: this.props.navigation,
             xValue: new Animated.Value(0),
             yValue: new Animated.Value(150),
             opacity: new Animated.Value(0.4),
@@ -111,9 +111,23 @@ export default class App extends Component {
                     ]}>
                 </View>
                 <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
-                <View style={styles.fromContainer}>
-                    <NavigationI/>
-                </View>
+
+                <View style={styles.appleicons}/>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
+                    <Image style={styles.icons} 
+                        source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
+                    </Image>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
+                    <Image style={styles.icons1}
+                        source={{uri:"https://i.imgur.com/Ym3QcbY.png"}}> 
+                    </Image>
+                </TouchableOpacity>
+                <Image style={styles.icons2}
+                    source={{uri:"https://i.imgur.com/h0k8Wop.png"}}> 
+                </Image>
+
+
                 <TouchableOpacity onPress={this.InfoAnimation}>
                     <Image style={styles.icons3}
                         source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
@@ -228,5 +242,32 @@ const styles = StyleSheet.create({
         width: 42,
         position: "absolute",
         right: 270,
-    }
+    },
+    appleicons: {
+        backgroundColor: "rgba(0,0,0,0.1)",
+        paddingVertical: 10,
+        top: -5,
+    },
+    icons: {
+        height: 50,
+        width: 50,
+        position: "absolute",
+        right: 10,
+        top: -5,
+    },
+    icons1: {
+        height: 50,
+        width: 50,
+        position: "absolute",
+        right: 70,
+        top: -2,
+    },
+    icons2: {
+        height: 33,
+        width: 33,
+        position: "absolute",
+        right: 140,
+        top: 30,
+        opacity: 0.5,
+    },
 });

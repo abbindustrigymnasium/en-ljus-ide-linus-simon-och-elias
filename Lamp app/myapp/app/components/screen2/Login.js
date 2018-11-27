@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, Animated } from "react-native";
+import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, Animated, StatusBar, TextInput } from "react-native";
 import { LinearGradient } from 'expo';
-import LoginFrom from "./LoginFrom";
-import NavigationL from "./NavigationL";
+
 
 export default class Login extends Component {
 
@@ -36,16 +35,28 @@ export default class Login extends Component {
         }
         return (
             <View style={styles.container}>
-                <Animated.View 
-                    style={[styles.shadow,
-                    {zIndex:this.state.zIndex},
-                    ]}>
-                </Animated.View>
+
                 <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
-                    <KeyboardAvoidingView behavior="padding" style={styles.container}>
-                        <View style={styles.fromContainer}>
-                            <NavigationL/>
-                        </View>
+
+                <View style={styles.appleicons}/>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
+                    <Image style={styles.icons} 
+                        source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
+                    </Image>
+                </TouchableOpacity>
+
+                    <Image style={styles.icons1}
+                        source={{uri:"https://i.imgur.com/Ym3QcbY.png"}}> 
+                    </Image>
+
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
+                    <Image style={styles.icons2}
+                        source={{uri:"https://i.imgur.com/h0k8Wop.png"}}> 
+                    </Image>
+                </TouchableOpacity>
+
+                <KeyboardAvoidingView behavior="padding" style={styles.container}>
+
                         <TouchableOpacity onPress={this.InfoAnimation}>
                             <Image style={styles.icons3}
                                 source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
@@ -57,9 +68,30 @@ export default class Login extends Component {
                             </TouchableOpacity>
                             <Text style={styles.title}>En ljus ide</Text>
                         </View>
-                        <View style={styles.fromContainer}>
-                            <LoginFrom/>
-                        </View>
+                        <View style={styles.container1}>
+                        <StatusBar barStyle="light-content"/>
+                <TextInput
+                placeholder="namn eller email"
+                placeholderTextColor="rgba(255,255,255,0.7)"
+                returnKeyType="next"
+                onSubmitEditing={() => this.passwordInput.focus()}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                style={styles.input}
+                />
+                <TextInput
+                placeholder="lösenord"
+                placeholderTextColor="rgba(255,255,255,0.7)"
+                returnKeyType="go"
+                secureTextEntry
+                style={styles.input}
+                ref={(input) => this.passwordInput = input}
+                />
+                <TouchableOpacity style={styles.buttonContainer}>
+                    <Text style={styles.buttonText}>LOGGA IN</Text>
+                </TouchableOpacity>
+                </View>
                     </KeyboardAvoidingView>
                 </LinearGradient>
             </View>
@@ -70,6 +102,9 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    container1: {
+        padding: 20,
     },
     logoContainer: {
         alignItems: "center",
@@ -99,5 +134,48 @@ const styles = StyleSheet.create({
         position: "absolute",
         right: 270,
         top: 2,
-    }
+    },
+    appleicons: {
+        backgroundColor: "rgba(0,0,0,0.1)",
+        paddingVertical: 10,
+    },
+    icons: {
+        height: 50,
+        width: 50,
+        position: "absolute",
+        right: 10,
+    },
+    icons1: {
+        height: 50,
+        width: 50,
+        position: "absolute",
+        right: 70,
+        opacity: 0.5,
+        top: 22,
+    },
+    icons2: {
+        height: 35,
+        width: 33,
+        position: "absolute",
+        right: 140,
+        top: 8,
+    },
+    input: {
+        height: 40,
+        backgroundColor: "rgba(0,0,0,0.15)",
+        marginBottom: 10,
+        color: "#ffffff",
+        paddingHorizontal: 10,
+        borderRadius: 7.5,
+    },
+    buttonContainer: {
+        backgroundColor: "rgba(0,0,0,0.15)",
+        paddingVertical: 15,
+        borderRadius: 7.5,
+    },
+    buttonText: {
+        textAlign: "center",
+        color: "#ffffff",
+        fontWeight: "700",
+    },
 });

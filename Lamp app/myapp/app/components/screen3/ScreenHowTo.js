@@ -3,13 +3,13 @@ import React from 'react';
 import HowToAnimation from './HowToAnimation';
 
 export default class ScreenHowTo extends React.Component {
-
     constructor(props) {
 
         super(props);
 
         this.state = {
             HowToAnimationVisible: true,
+            navigation: this.props.navigation,
         }
 
     }
