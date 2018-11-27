@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component} from "react"; //nu äre uppdated
 import {StyleSheet, Image, Text, TouchableOpacity, View, Animated, Easing, Dimensions} from "react-native";
 import NavigationI from "./NavigationI";
 import { LinearGradient } from 'expo';
