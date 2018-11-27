@@ -34,10 +34,8 @@ export default class Login extends Component {
         }
         return (
             <View style={styles.container}>
-            
-                <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
 
-                    <View style={styles.appleicons}/>
+                <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
 
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
                         <Image style={styles.icons} 
@@ -54,6 +52,8 @@ export default class Login extends Component {
                             source={{uri:"https://i.imgur.com/h0k8Wop.png"}}> 
                         </Image>
                     </TouchableOpacity>
+
+                    <View style={styles.appleicons}/>
 
                         <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
         width: 50,
         position: "absolute",
         right: 10,
+        top: 22,
     },
     icons1: {
         height: 50,
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
         width: 33,
         position: "absolute",
         right: 140,
-        top: 8,
+        top: 30,
     },
     input: {
         height: 40,

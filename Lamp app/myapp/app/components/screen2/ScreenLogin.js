@@ -10,6 +10,7 @@ export default class ScreenLogin extends React.Component {
 
         this.state = {
             LoginVisible: true,
+            navigation: this.props.navigation,
         }
 
     }
