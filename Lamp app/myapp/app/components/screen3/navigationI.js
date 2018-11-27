@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 
-export default class NavigationL extends Component {
+export default class NavigationI extends Component {
     render() {
         return(
             <View style={styles.container}>
