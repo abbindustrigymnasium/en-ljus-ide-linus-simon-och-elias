@@ -13,6 +13,7 @@ bool SensorValue = false;
 int Coldvalue = 0;
 int Hotvalue = 0; 
 int Strvalue = 0;
+int mintimer = 0;
 bool LampExist = false;
 bool GottenValues = false;
       
