@@ -24,7 +24,7 @@ const StackNavigator = createStackNavigator({
             title: false,
             header: null,
         }
-    },*/
+    },
     ScreenHowTo: {
         screen: ScreenHowTo,
         navigationOptions: {
@@ -38,7 +38,7 @@ const StackNavigator = createStackNavigator({
             title: false,
             header: null,
         }
-    },
+    },*/
     ScreenHome: { 
         screen: ScreenHome,
         navigationOptions: {

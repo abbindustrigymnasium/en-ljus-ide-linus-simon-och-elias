@@ -1,15 +1,20 @@
 import React from 'react';
+import { 
+    StyleSheet,
+    View,
+} from 'react-native';
 
-import Componentfunction from "./Componentfunction";
+import Componentfunction from './componentfunction';
+
 
 export default class ScreenHome extends React.Component {
-    
+
     constructor(props) {
 
         super(props);
 
         this.state = {
-            componentfunctionVisible: true,
+            ComponentfunctionVisible: true,
         }
 
     }
@@ -59,21 +64,57 @@ export default class ScreenHome extends React.Component {
         let prop = component + 'Visible';
 
         this.setState({
-            [prop]: true
+           [prop]: true
         })
 
         return true;
 
     }
+
     render() {
         return (
-            <Componentfunction
-            navigation={this.props.navigation}
-            toggleComponent={ (component) => this.toggleComponent(component) }
-            hideComponent={ (component) => this.hideComponent(component) }
-            showComponent={ (component) => this.showComponent(component) }
-            visible={ this.state.componentfunctionVisible }
-            />
+
+            
+            <View style={styles.container}>
+
+                <View style={styles.screencontainer}>
+
+                    <View style={styles.screencontainerInner}>
+
+                        <Componentfunction 
+                            navigation={this.props.navigation}
+                            toggleComponent={ (component) => this.toggleComponent(component) }
+                            hideComponent={ (component) => this.hideComponent(component) }
+                            showComponent={ (component) => this.showComponent(component) }
+                            visible={ this.state.Component1Visible }
+                        />
+                        
+                        <Component3/>
+
+                       
+                    </View>
+
+                </View>
+
+            </View>
+
         );
     }
-};
+}
+
+const styles = StyleSheet.create({
+
+    container: {
+        flex: 1,
+    },
+    
+    screencontainer: {
+        backgroundColor: 'rgba(255,255,255,1)',
+        flex: 1,
+    },
+    
+    screencontainerInner: {
+        flex: 1,
+    },
+    
+});
