@@ -91,7 +91,6 @@ export default class Login extends Component {
                                     ref={(input) => this.passwordInput = input}
                                 />
                                 
-
                                 <TouchableOpacity style={styles.buttonContainer}>
                                     <Text style={styles.buttonText}>LOGGA IN</Text>
                                 </TouchableOpacity>
