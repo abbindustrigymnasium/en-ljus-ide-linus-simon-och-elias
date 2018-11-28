@@ -129,61 +129,74 @@ export default class HowToAnimation extends Component {
             <View style={styles.container}>
                 <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
 
-                <View style={styles.appleicons}/>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
-                    <Image style={styles.icons} 
-                        source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
-                    </Image>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
-                    <Image style={styles.icons1}
-                        source={{uri:"https://i.imgur.com/Ym3QcbY.png"}}> 
-                    </Image>
-                </TouchableOpacity>
-                <Image style={styles.icons2}
-                    source={{uri:"https://i.imgur.com/h0k8Wop.png"}}> 
-                </Image>
+                    <View style={styles.appleicons}/>
+                    
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
 
+                        <Image style={styles.icons} 
+                            source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
+                        </Image>
+                    </TouchableOpacity>
 
-                <TouchableOpacity onPress={this.InfoAnimation}>
-                    <Image style={styles.icons3}
-                        source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
+
+                        <Image style={styles.icons1}
+                            source={{uri:"https://i.imgur.com/Ym3QcbY.png"}}> 
+                        </Image>
+
+                    </TouchableOpacity>
+
+                    <Image style={styles.icons2}
+                        source={{uri:"https://i.imgur.com/h0k8Wop.png"}}> 
                     </Image>
-                </TouchableOpacity>
-                <Image
-                    style={styles.lamp}
-                    source={{uri:"http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png"}}>
-                </Image>
-                <Animated.View
-                    style={[styles.lampopacity,
-                    {opacity:this.state.opacity},
+
+                    <TouchableOpacity onPress={this.InfoAnimation}>
+                        <Image style={styles.icons3}
+                            source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
+                        </Image>
+                    </TouchableOpacity>
+
+                    <Image
+                        style={styles.lamp}
+                        source={{uri:"http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png"}}>
+                    </Image>
+
+                    <Animated.View
+                        style={[styles.lampopacity,
+                        {opacity:this.state.opacity},
+                        ]}>
+                    </Animated.View>
+
+                    <Animated.View
+                        style={[styles.lampopacityfar,
+                        {opacity:this.state.opacityfar},
+                        ]}>
+                    </Animated.View>
+
+                    <Animated.Image 
+                        source={{uri:"https://i.imgur.com/Bj5tGsC.png"}}
+                        style={[styles.imageView,
+                        {left:this.state.xValue},
+                        {top:this.state.yValue},
                     ]}>
-                </Animated.View>
-                <Animated.View
-                    style={[styles.lampopacityfar,
-                    {opacity:this.state.opacityfar},
-                    ]}>
-                </Animated.View>
-                <Animated.Image 
-                    source={{uri:"https://i.imgur.com/Bj5tGsC.png"}}
-                    style={[styles.imageView,
-                    {left:this.state.xValue},
-                    {top:this.state.yValue},
-                ]}>
-                </Animated.Image>
+                    </Animated.Image>
 
-                <TouchableOpacity style={styles.button1}
-                    onPress={this._lampAnimation}
-                >
-                <Text style={styles.buttonText}>Full Preview</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.button1} onPress={this._lampAnimation}>
+                        <Text style={styles.buttonText}>
+                            Full Preview
+                        </Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button2}
-                    onPress={this._lampAnimation}
-                >
-                <Text style={styles.buttonText}>Walkthrough</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.button2} onPress={this._lampAnimation}>
+
+                        <Text style={styles.buttonText}>
+                            Walkthrough
+                        </Text>
+
+                    </TouchableOpacity>
+
                 </LinearGradient>
+
             </View>
         );
     }
