@@ -1,0 +1,9 @@
+get data strength
+if strength > 0
+    light bulb = on
+
+or
+
+get data strength
+strength: new Animated.Value(0)
+    to value strength

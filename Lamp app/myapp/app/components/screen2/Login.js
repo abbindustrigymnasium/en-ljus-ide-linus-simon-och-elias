@@ -5,11 +5,35 @@ import { LinearGradient } from 'expo';
 
 export default class Login extends Component {
 
+	componentDidMount(){
+		let self= this;
+			fetch("http://iot.abbindustrigymnasium.se:3001/grupp1/1", {
+				method: "GET"
+				}).then((response) => response.json()).then((responseJson)=>{
+				console.log(responseJson);
+
+				var resultat = responseJson.result;
+				if (responseJson.message = "light1"){
+					if (responseJson.result.lenght!=0){
+						self.setState({
+							products: resultat
+						})
+					}
+                else
+                alert("not found")
+				console.log(this.state);
+			}
+		}).catch((error)=>{
+			console.error(error);
+		});
+	}
+
     constructor(){
         super();
         this.state={
             imageURL : "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png",
             //zIndex: new Animated.Value(-10),
+            strength: new Animated.Value(0),
         }
     }
 
@@ -28,6 +52,16 @@ export default class Login extends Component {
         });
     }
 */
+
+LampOnOff = () => {
+    Animated.timing(this.state.strength, {
+        toValue: strengh,
+        useNativeDriver: true,
+    }).start(() => {
+
+    });
+}
+
     render() {
         if (!this.props.visible) {
             return false;
@@ -42,9 +76,9 @@ export default class Login extends Component {
                         <KeyboardAvoidingView behavior="padding" style={styles.container}>
                             
                             <View style={styles.logoContainer}>
-                                    <TouchableOpacity onPress={this.Load_New_Image}>
-                                        <Image style={styles.logo} source={{uri: this.state.imageURL}}/>
-                                    </TouchableOpacity>
+                                <TouchableOpacity onPress={this.Load_New_Image}>
+                                    <Image style={styles.logo} source={{uri: this.state.imageURL}}/>
+                                </TouchableOpacity>
                                 <Text style={styles.title}>En ljus ide</Text>
                             </View>
 
