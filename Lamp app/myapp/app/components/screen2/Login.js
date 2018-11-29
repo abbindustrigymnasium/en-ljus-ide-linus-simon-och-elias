@@ -26,14 +26,15 @@ export default class Login extends Component {
 		}).catch((error)=>{
 			console.error(error);
 		});
-	}
+    }
 
     constructor(){
         super();
         this.state={
             imageURL : "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png",
             //zIndex: new Animated.Value(-10),
-            strength: new Animated.Value(0),
+            str: new Animated.Value("strength"), //idk why no put strength
+            strength: [],
         }
     }
 
@@ -54,13 +55,107 @@ export default class Login extends Component {
 */
 
 LampOnOff = () => {
-    Animated.timing(this.state.strength, {
-        toValue: strengh,
+    Animated.timing(this.state.str, {
+        toValue: str,
         useNativeDriver: true,
     }).start(() => {
 
     });
 }
+
+WriteOutFromBackend(){
+    return this.state.products.map((produkt) => {
+        return (
+            <View key={produkt.key}> 
+                <Text style={styles.componentrecentcontenttext}> 
+                    {produkt.name} kostar {produkt.price} kr
+                </Text>
+            </View>
+        )
+    })
+}
+
+InsertDataToServer=() => {
+    const {Name} = this.state;
+    const {Price} = this.state;
+    console.log("responseJSON");
+        if (Name!=""){
+            fetch(this.adress,{
+                method: "POST",
+                headers: {
+                    "Accept": "application/jqson",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: Name,
+                    price: Price
+                })
+            }).then((response) => response.json()).then(responseJson => {
+                console.log(responseJson.Product[0].name);
+                console.log(responseJson);
+                alert(responseJson.message +", "+ responseJson.Product[0]);
+            }).catch((error)=>{
+                console.log(error);
+            });
+        }
+        else
+    alert("Name is empty");
+}
+
+UpdateDataToServer=() => {
+    const {Name} = this.state;
+    const {Price} = this.state;
+
+        if (Name!=""){
+            fetch(this.adress+"/"+Name, {
+                method: "PATCH",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                },
+                
+                body: JSON.stringify({
+                    name: Name,
+                    price: Price
+                })
+                
+            }).then((response) => response.json()).then(responseJson => {
+                console.log(responseJson);
+                alert("Update was successfull, "+Name);
+            }).catch((error)=>{
+                console.error(error);
+            });
+    }
+    else
+    alert("Name is empty");
+}
+
+DeleteDataFromServer=() => {
+    const {Name} = this.state;
+    const {Price} = this.state;
+
+        if (Name!=""){
+            fetch(this.adress+"/"+Name,{
+                method: "Delete",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: Name,
+                    price: Price,	 
+                    })		   
+            }).then((response) => response.json())
+                .then((responseJson) => {
+                    console.log(responseJson);
+                    alert( "Delete was successfull, "+ Name);
+                }).catch((error) => {
+                console.error(error);
+            });
+        }
+        else
+            alert("Write a name and a price.")
+        }
 
     render() {
         if (!this.props.visible) {
