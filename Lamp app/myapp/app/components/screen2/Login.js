@@ -210,6 +210,7 @@ DeleteDataFromServer=() => {
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     style={styles.input}
+                                    underlineColorAndroid='rgba(0,0,0,0)'
                                 />
 
                                 <TextInput
@@ -219,6 +220,7 @@ DeleteDataFromServer=() => {
                                     secureTextEntry
                                     style={styles.input}
                                     ref={(input) => this.passwordInput = input}
+                                    underlineColorAndroid='rgba(0,0,0,0)'
                                 />
                                 
                                 <TouchableOpacity style={styles.buttonContainer}>
