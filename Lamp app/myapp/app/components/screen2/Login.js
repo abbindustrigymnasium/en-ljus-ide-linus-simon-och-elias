@@ -169,7 +169,27 @@ DeleteDataFromServer=() => {
                     <View style={styles.appleicons}/>
 
                         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-                            
+                        <View style={styles.flexdirection}>
+                                <TouchableOpacity onPress={this.InfoAnimation}>
+                                    <Image style={styles.iconss}
+                                        source={{uri:"https://i.imgur.com/ckCwx8E.png"}}>
+                                    </Image>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
+                                    <Image style={styles.icons}
+                                        source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
+                                    </Image>
+                                </TouchableOpacity>
+                                <Image style={styles.icons}
+                                    opacity="0.5"
+                                    source={{uri:"https://i.imgur.com/q8yK9xy.png"}}> 
+                                </Image>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
+                                    <Image style={styles.icons} 
+                                        source={{uri:"https://i.imgur.com/aMWWAck.png"}}> 
+                                    </Image>
+                                </TouchableOpacity>
+                            </View>
                             <View style={styles.logoContainer}>
                                 <TouchableOpacity onPress={this.Load_New_Image}>
                                     <Image style={styles.logo} source={{uri: this.state.imageURL}}/>
@@ -178,26 +198,7 @@ DeleteDataFromServer=() => {
                             </View>
 
                             <View style={styles.container1}>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
-                                    <Image style={styles.icons} 
-                                        source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
-                                    </Image>
-                                </TouchableOpacity>
 
-                                <Image style={styles.icons1}
-                                    source={{uri:"https://i.imgur.com/Ym3QcbY.png"}}> 
-                                </Image>
-
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
-                                    <Image style={styles.icons2}
-                                        source={{uri:"https://i.imgur.com/h0k8Wop.png"}}>
-                                    </Image>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={this.InfoAnimation}>
-                                    <Image style={styles.icons3}
-                                        source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
-                                    </Image>
-                                </TouchableOpacity>
                                 <StatusBar barStyle="light-content"/>
 
                                 <TextInput
@@ -266,38 +267,19 @@ const styles = StyleSheet.create({
         position: "absolute",
     },
     */
-    icons3: {
-        height: 42,
-        width: 42,
-        position: "absolute",
-        right: 255,
-        top: -380,
-    },
     appleicons: {
         backgroundColor: "rgba(0,0,0,0.1)",
         paddingVertical: 10,
     },
     icons: {
-        height: 50,
-        width: 50,
-        position: "absolute",
-        right: -9,
-        top: -380,
-    },
-    icons1: {
-        height: 50,
-        width: 50,
-        position: "absolute",
-        right: 71,
-        opacity: 0.5,
-        top: -356,
-    },
-    icons2: {
         height: 35,
-        width: 33,
-        position: "absolute",
-        right: 122,
-        top: -370,
+        width: 35,
+        marginHorizontal: 10,
+    },
+    iconss: {
+        height: 35,
+        width: 35,
+        marginHorizontal: 100, //123 inte lika på alla skärmar
     },
     input: {
         height: 40,
@@ -316,5 +298,11 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "#ffffff",
         fontWeight: "700",
+    },
+    flexdirection: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        padding: 10,
     },
 });
