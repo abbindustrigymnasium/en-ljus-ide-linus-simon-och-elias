@@ -131,30 +131,27 @@ export default class HowToAnimation extends Component {
 
                     <View style={styles.appleicons}/>
                     
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
-
-                        <Image style={styles.icons} 
-                            source={{uri:"https://i.imgur.com/S9DcZjE.png"}}> 
-                        </Image>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
-
-                        <Image style={styles.icons1}
-                            source={{uri:"https://i.imgur.com/Ym3QcbY.png"}}> 
-                        </Image>
-
-                    </TouchableOpacity>
-
-                    <Image style={styles.icons2}
-                        source={{uri:"https://i.imgur.com/h0k8Wop.png"}}> 
-                    </Image>
-
-                    <TouchableOpacity onPress={this.InfoAnimation}>
-                        <Image style={styles.icons3}
-                            source={{uri:"https://i.imgur.com/DBn1Jvr.png"}}>
-                        </Image>
-                    </TouchableOpacity>
+                    <View style={styles.flexdirection}>
+                                <TouchableOpacity onPress={this.InfoAnimation}>
+                                    <Image style={styles.iconss}
+                                        source={{uri:"https://i.imgur.com/ckCwx8E.png"}}>
+                                    </Image>
+                                </TouchableOpacity>
+                                    <Image style={styles.icons}
+                                        opacity="0.5"
+                                        source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
+                                    </Image>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
+                                <Image style={styles.icons}
+                                    source={{uri:"https://i.imgur.com/q8yK9xy.png"}}> 
+                                </Image>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
+                                    <Image style={styles.icons} 
+                                        source={{uri:"https://i.imgur.com/aMWWAck.png"}}> 
+                                    </Image>
+                                </TouchableOpacity>
+                    </View>
 
                     <Image
                         style={styles.lamp}
@@ -241,7 +238,7 @@ const styles = StyleSheet.create({
         height: 100,
         backgroundColor: "transparent",
         alignSelf: "center",
-        top: 45,
+        top: 32,
     },
     lampopacity: {
         width: 100,
@@ -271,38 +268,10 @@ const styles = StyleSheet.create({
         position: "absolute",
     },
     */
-    icons3: {
-        height: 42,
-        width: 42,
-        position: "absolute",
-        right: 270,
-    },
     appleicons: {
         backgroundColor: "rgba(0,0,0,0.1)",
         paddingVertical: 10,
         top: -5,
-    },
-    icons: {
-        height: 50,
-        width: 50,
-        position: "absolute",
-        right: 10,
-        top: -5,
-    },
-    icons1: {
-        height: 50,
-        width: 50,
-        position: "absolute",
-        right: 70,
-        top: -2,
-    },
-    icons2: {
-        height: 33,
-        width: 33,
-        position: "absolute",
-        right: 140,
-        top: 30,
-        opacity: 0.5,
     },
     /*
     buttonContainer: {
@@ -325,4 +294,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#ecf0f1',
     },
     */
+    flexdirection: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        padding: 10,
+    },
+    icons: {
+        height: 35,
+        width: 35,
+        marginHorizontal: 10,
+    },
+    iconss: {
+        height: 35,
+        width: 35,
+        marginHorizontal: 100, //123 inte lika på alla skärmar
+    },
 });
