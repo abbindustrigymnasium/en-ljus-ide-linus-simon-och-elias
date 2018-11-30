@@ -181,7 +181,7 @@ DeleteDataFromServer=() => {
                                     </Image>
                                 </TouchableOpacity>
                                 <Image style={styles.icons}
-                                    opacity="0.5"
+                                    opacity={0.5}
                                     source={{uri:"https://i.imgur.com/q8yK9xy.png"}}> 
                                 </Image>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>

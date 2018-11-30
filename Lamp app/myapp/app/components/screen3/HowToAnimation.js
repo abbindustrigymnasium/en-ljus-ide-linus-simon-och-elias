@@ -138,7 +138,7 @@ export default class HowToAnimation extends Component {
                                     </Image>
                                 </TouchableOpacity>
                                     <Image style={styles.icons}
-                                        opacity="0.5"
+                                        opacity={0.5}
                                         source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
                                     </Image>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
