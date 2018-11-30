@@ -153,10 +153,9 @@ export default class HowToAnimation extends Component {
                                 </TouchableOpacity>
                     </View>
 
-                    <Image
-                        style={styles.lamp}
-                        source={{uri:"http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png"}}>
-                    </Image>
+                    <View style={styles.lampContainer}>
+                        <Image style={styles.lamp} source={{uri:"http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png"}}/>
+                    </View>
 
                     <Animated.View
                         style={[styles.lampopacity,
@@ -178,19 +177,11 @@ export default class HowToAnimation extends Component {
                     ]}>
                     </Animated.Image>
 
-                    <TouchableOpacity style={styles.button1} onPress={this._lampAnimation}>
-                        <Text style={styles.buttonText}>
-                            Full Preview
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.button2} onPress={this._lampAnimation}>
-
-                        <Text style={styles.buttonText}>
-                            Walkthrough
-                        </Text>
-
-                    </TouchableOpacity>
+                    <View style={styles.container1}>
+                        <TouchableOpacity style={styles.buttonContainer} onPress={this._lampAnimation}>
+                            <Text style={styles.buttonText}>PREVIEW</Text>
+                        </TouchableOpacity>
+                    </View>
 
                 </LinearGradient>
 
@@ -204,41 +195,33 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
     },
-    button1: {
-        height: 45,
-        marginTop: 290,
-        alignSelf: "flex-start",
-        left: 10,
-        backgroundColor: "rgba(0,0,0,0.15)",
-        borderRadius: 7.5,
+    container1: {
+        padding: 20,
     },
-    button2: {
-        height: 45,
-        marginTop: -45,
-        alignSelf: "flex-end",
-        right: 10,
+    buttonContainer: {
         backgroundColor: "rgba(0,0,0,0.15)",
+        paddingVertical: 15,
         borderRadius: 7.5,
     },
     buttonText: {
-        color: "white",
-        padding: 12,
-        fontWeight: "bold",
-        fontSize: 18,
-        justifyContent: "center",
+        textAlign: "center",
+        color: "#ffffff",
+        fontWeight: "700",
     },
     imageView: {
         width: 100,
         height: 100,
         backgroundColor: "transparent",
     },
+    lampContainer: {
+        alignItems: "center",
+        flexGrow: 1,
+        justifyContent: "flex-start",
+    },  
     lamp: {
-        transform: [{ rotate: '180deg'}],
         width: 100,
         height: 100,
-        backgroundColor: "transparent",
-        alignSelf: "center",
-        top: 32,
+        transform: [{ rotate: '180deg'}],
     },
     lampopacity: {
         width: 100,
