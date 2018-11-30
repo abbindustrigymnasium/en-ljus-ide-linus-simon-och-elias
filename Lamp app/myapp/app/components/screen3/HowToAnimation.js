@@ -120,6 +120,13 @@ export default class HowToAnimation extends Component {
                 </LinearGradient>
                 </View>
                 */
+/*
+                <TouchableOpacity onPress={this.InfoAnimation}>
+                <Image style={styles.iconss}
+                   source={{uri:"https://i.imgur.com/ckCwx8E.png"}}>
+                </Image>
+                </TouchableOpacity>
+*/
 
     render () {
         if (!this.props.visible) {
@@ -132,25 +139,20 @@ export default class HowToAnimation extends Component {
                     <View style={styles.appleicons}/>
                     
                     <View style={styles.flexdirection}>
-                                <TouchableOpacity onPress={this.InfoAnimation}>
-                                    <Image style={styles.iconss}
-                                        source={{uri:"https://i.imgur.com/ckCwx8E.png"}}>
-                                    </Image>
-                                </TouchableOpacity>
-                                    <Image style={styles.icons}
-                                        opacity={0.5}
-                                        source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
-                                    </Image>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
-                                <Image style={styles.icons}
-                                    source={{uri:"https://i.imgur.com/q8yK9xy.png"}}> 
-                                </Image>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
-                                    <Image style={styles.icons} 
-                                        source={{uri:"https://i.imgur.com/aMWWAck.png"}}> 
-                                    </Image>
-                                </TouchableOpacity>
+                        <Image style={styles.icons}
+                            opacity={0.5}
+                            source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
+                        </Image>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
+                        <Image style={styles.icons}
+                            source={{uri:"https://i.imgur.com/q8yK9xy.png"}}> 
+                        </Image>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
+                            <Image style={styles.icons} 
+                                source={{uri:"https://i.imgur.com/aMWWAck.png"}}> 
+                            </Image>
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.lampContainer}>
@@ -288,9 +290,11 @@ const styles = StyleSheet.create({
         width: 35,
         marginHorizontal: 10,
     },
+    /*
     iconss: {
         height: 35,
         width: 35,
         marginHorizontal: 100, //123 inte lika på alla skärmar
     },
+    */
 });

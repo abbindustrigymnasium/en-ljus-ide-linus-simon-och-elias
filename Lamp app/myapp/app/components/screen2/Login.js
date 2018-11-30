@@ -157,6 +157,14 @@ DeleteDataFromServer=() => {
             alert("Write a name and a price.")
         }
 
+        /*
+            <TouchableOpacity onPress={this.InfoAnimation}>
+                <Image style={styles.iconss}
+                    source={{uri:"https://i.imgur.com/ckCwx8E.png"}}>
+                </Image>
+            </TouchableOpacity>
+        */
+
     render() {
         if (!this.props.visible) {
             return false;
@@ -170,11 +178,6 @@ DeleteDataFromServer=() => {
 
                         <KeyboardAvoidingView behavior="padding" style={styles.container}>
                         <View style={styles.flexdirection}>
-                                <TouchableOpacity onPress={this.InfoAnimation}>
-                                    <Image style={styles.iconss}
-                                        source={{uri:"https://i.imgur.com/ckCwx8E.png"}}>
-                                    </Image>
-                                </TouchableOpacity>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
                                     <Image style={styles.icons}
                                         source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
@@ -278,11 +281,13 @@ const styles = StyleSheet.create({
         width: 35,
         marginHorizontal: 10,
     },
+    /*
     iconss: {
         height: 35,
         width: 35,
         marginHorizontal: 100, //123 inte lika på alla skärmar
     },
+    */
     input: {
         height: 40,
         backgroundColor: "rgba(0,0,0,0.15)",
