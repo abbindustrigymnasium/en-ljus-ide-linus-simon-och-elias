@@ -9,7 +9,7 @@ export default class HowToAnimation extends Component {
         this.state = {
             navigation: this.props.navigation,
             xValue: new Animated.Value(0),
-            yValue: new Animated.Value(-100),
+            yValue: new Animated.Value(-100), //123 inte universiellt
             opacity: new Animated.Value(0.4),
             opacityfar: new Animated.Value(0.15),
             //index: new Animated.Value(-10), //index value
