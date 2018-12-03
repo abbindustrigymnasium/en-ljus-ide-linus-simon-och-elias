@@ -1,38 +1,41 @@
 import React, {Component} from "react"; //nu äre uppdated
 import {StyleSheet, Image, Text, TouchableOpacity, View, Animated, Easing, Dimensions} from "react-native";
 import { LinearGradient, Constants } from 'expo';
-var { width, height } = Dimensions.get("window");
+//var { width, height } = Dimensions.get("window");
 
 export default class HowToAnimation extends Component {
     constructor(props) {
         super(props);
+        this.moveAnimation = new Animated.ValueXY({ x: 0, y:-100 })
         this.state = {
             navigation: this.props.navigation,
-            xValue: new Animated.Value(0),
-            yValue: new Animated.Value(-100), //123 inte universiellt
             opacity: new Animated.Value(0.4),
             opacityfar: new Animated.Value(0.15),
+            //position: new Animated.ValueXY({x:0, y:0}),
+            //ValueXY: new Animated.ValueXY({ x: 0, y: 0 }),
             //index: new Animated.Value(-10), //index value
         }
     }
+
 /* //index animation
     onPress=()=>{
         this.setState({index: index});
     }
 */
+
     _lampAnimation = () => {
-        Animated.timing(this.state.xValue, {
-            toValue: width - 100,
+        Animated.timing(this.moveAnimation, {
+            toValue: { x: 220, y: -100 },
             duration: 1500,
             esing: Easing.linear,
         }).start(() => {
-            Animated.timing(this.state.xValue, {
-                toValue: 0,
+            Animated.timing(this.moveAnimation, {
+                toValue: { x: 0, y: -100 },
                 duration: 1500,
                 easing: Easing.linear,
             }).start(() => {
-                Animated.timing(this.state.xValue, {
-                    toValue: width - 200,
+                Animated.timing(this.moveAnimation, {
+                    toValue: { x: 120, y: -100 },
                     duration: 900,
                     esing: Easing.linear,
                 }).start(() => {
@@ -47,10 +50,10 @@ export default class HowToAnimation extends Component {
                             duration: 1000,
                             useNativeDriver: true,
                         }),
-                        Animated.timing(this.state.yValue, {
-                            toValue: height - 550,
+                        Animated.timing(this.moveAnimation, {
+                            toValue: { x: 120, y: 0 },
                             duration: 1000,
-                            esing: Easing.vertical,
+                            esing: Easing.linear,
                         }) ]).start(() => {
                             Animated.parallel([
                                 Animated.timing(this.state.opacity, {
@@ -63,10 +66,10 @@ export default class HowToAnimation extends Component {
                                     duration: 2000,
                                     useNativeDriver: true,
                                 }),
-                                Animated.timing(this.state.yValue, {
-                                    toValue: height - 775,
+                                Animated.timing(this.moveAnimation, {
+                                    toValue: { x: 120, y: -200 },
                                     duration: 2000,
-                                    esing: Easing.vertical,
+                                    esing: Easing.linear,
                                 }) ]).start(() => {
                                     Animated.parallel([
                                         Animated.timing(this.state.opacity, {
@@ -79,13 +82,13 @@ export default class HowToAnimation extends Component {
                                             duration: 1000,
                                             useNativeDriver: true,
                                         }),
-                                        Animated.timing(this.state.yValue, {
-                                            toValue: height - 675,
+                                        Animated.timing(this.moveAnimation, {
+                                            toValue: { x: 120, y: -100 },
                                             duration: 1000,
-                                            esing: Easing.vertical,
+                                            esing: Easing.linear,
                                         }) ]).start(() => {
-                                            Animated.timing(this.state.xValue, {
-                                                toValue: width - 320,
+                                            Animated.timing(this.moveAnimation, {
+                                                toValue: { x: 0, y: -100 },
                                                 duration: 900,
                                                 esing: Easing.linear,
                                             }).start(() => {
@@ -174,8 +177,7 @@ export default class HowToAnimation extends Component {
                     <Animated.Image 
                         source={{uri:"https://i.imgur.com/Bj5tGsC.png"}}
                         style={[styles.imageView,
-                        {left:this.state.xValue},
-                        {top:this.state.yValue},
+                        this.moveAnimation.getLayout()
                     ]}>
                     </Animated.Image>
                     </View>
@@ -223,12 +225,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexGrow: 1,
         top: -90, //123 inte universiellt
+        zIndex: 10,
         //justifyContent: "flex-start",
     },  
     lamp: {
         width: 100,
         height: 100,
         transform: [{ rotate: '180deg'}],
+        zIndex: 10,
     },
     lampopacity: {
         width: 100,
@@ -238,7 +242,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         position: "absolute",
         top: 85,
-        zIndex: -1,
+        zIndex: 5,
     },
     lampopacityfar: {
         width: 150,
@@ -248,7 +252,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         position: "absolute",
         top: 60,
-        zIndex: -2,
+        zIndex: 2,
     },
     /*
     shadow: { //gör det transparent någonstans idk kom på något
