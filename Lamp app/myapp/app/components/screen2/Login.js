@@ -32,7 +32,7 @@ export default class Login extends Component {
         super();
         this.state={
             imageURL : "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png",
-            //zIndex: new Animated.Value(-10),
+            //zIndex: new Animated.Value(-10), //index value
             str: new Animated.Value("strength"), //idk why no put strength
             strength: [],
         }
@@ -44,7 +44,7 @@ export default class Login extends Component {
         })
     }
 /*
-    InfoAnimation = () => {
+    InfoAnimation = () => { //infoamiationen
         Animated.timing(this.state.zIndex, {
             toValue: 10,
             useNativeDriver: true,
@@ -157,7 +157,7 @@ DeleteDataFromServer=() => {
             alert("Write a name and a price.")
         }
 
-        /*
+        /* //info knapp
             <TouchableOpacity onPress={this.InfoAnimation}>
                 <Image style={styles.iconss}
                     source={{uri:"https://i.imgur.com/ckCwx8E.png"}}>
@@ -184,7 +184,7 @@ DeleteDataFromServer=() => {
                                     </Image>
                                 </TouchableOpacity>
                                 <Image style={styles.icons}
-                                    opacity={0.5}
+                                    opacity={0.35}
                                     source={{uri:"https://i.imgur.com/q8yK9xy.png"}}> 
                                 </Image>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>

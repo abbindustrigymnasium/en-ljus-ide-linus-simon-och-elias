@@ -12,10 +12,10 @@ export default class HowToAnimation extends Component {
             yValue: new Animated.Value(-100),
             opacity: new Animated.Value(0.4),
             opacityfar: new Animated.Value(0.15),
-            //index: new Animated.Value(-10),
+            //index: new Animated.Value(-10), //index value
         }
     }
-/*
+/* //index animation
     onPress=()=>{
         this.setState({index: index});
     }
@@ -48,7 +48,7 @@ export default class HowToAnimation extends Component {
                             useNativeDriver: true,
                         }),
                         Animated.timing(this.state.yValue, {
-                            toValue: height - 290,
+                            toValue: height - 550,
                             duration: 1000,
                             esing: Easing.vertical,
                         }) ]).start(() => {
@@ -64,7 +64,7 @@ export default class HowToAnimation extends Component {
                                     useNativeDriver: true,
                                 }),
                                 Animated.timing(this.state.yValue, {
-                                    toValue: height - 500,
+                                    toValue: height - 775,
                                     duration: 2000,
                                     esing: Easing.vertical,
                                 }) ]).start(() => {
@@ -80,7 +80,7 @@ export default class HowToAnimation extends Component {
                                             useNativeDriver: true,
                                         }),
                                         Animated.timing(this.state.yValue, {
-                                            toValue: height - 425,
+                                            toValue: height - 675,
                                             duration: 1000,
                                             esing: Easing.vertical,
                                         }) ]).start(() => {
@@ -100,13 +100,13 @@ export default class HowToAnimation extends Component {
                 }
 
                 /*
-                <View 
+                <View //dimmar skärmen
                     style={[styles.shadow,
                     {zIndex:this.state.index},
                     ]}>
                 </View>
 
-                <View style={styles.container2}>
+                <View style={styles.container2}> //gradient knapp
                 <LinearGradient
                     colors={["#00fff", "#17c8ff", "#329bff", "#4c64ff", "#6536ff", "#8000ff"]}
                     start={{x:0.0, y:1.0}} end={{x:1.0, y:1.0}}
@@ -121,7 +121,7 @@ export default class HowToAnimation extends Component {
                 </View>
                 */
 /*
-                <TouchableOpacity onPress={this.InfoAnimation}>
+                <TouchableOpacity onPress={this.InfoAnimation}> //info icon
                 <Image style={styles.iconss}
                    source={{uri:"https://i.imgur.com/ckCwx8E.png"}}>
                 </Image>
@@ -140,7 +140,7 @@ export default class HowToAnimation extends Component {
                     
                     <View style={styles.flexdirection}>
                         <Image style={styles.icons}
-                            opacity={0.5}
+                            opacity={0.35}
                             source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
                         </Image>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
@@ -170,7 +170,7 @@ export default class HowToAnimation extends Component {
                         {opacity:this.state.opacityfar},
                         ]}>
                     </Animated.View>
-
+                    <View style={styles.handContainer}>
                     <Animated.Image 
                         source={{uri:"https://i.imgur.com/Bj5tGsC.png"}}
                         style={[styles.imageView,
@@ -178,7 +178,7 @@ export default class HowToAnimation extends Component {
                         {top:this.state.yValue},
                     ]}>
                     </Animated.Image>
-
+                    </View>
                     <View style={styles.container1}>
                         <TouchableOpacity style={styles.buttonContainer} onPress={this._lampAnimation}>
                             <Text style={styles.buttonText}>PREVIEW</Text>
@@ -195,7 +195,7 @@ export default class HowToAnimation extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //justifyContent: "center",
+        justifyContent: "center",
     },
     container1: {
         padding: 20,
@@ -204,6 +204,9 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(0,0,0,0.15)",
         paddingVertical: 15,
         borderRadius: 7.5,
+    },
+    handContainer: {
+        justifyContent: "space-between",
     },
     buttonText: {
         textAlign: "center",
