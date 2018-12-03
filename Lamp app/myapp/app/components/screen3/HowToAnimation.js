@@ -9,7 +9,7 @@ export default class HowToAnimation extends Component {
         this.state = {
             navigation: this.props.navigation,
             xValue: new Animated.Value(0),
-            yValue: new Animated.Value(150),
+            yValue: new Animated.Value(-100),
             opacity: new Animated.Value(0.4),
             opacityfar: new Animated.Value(0.15),
             //index: new Animated.Value(-10),
@@ -195,7 +195,7 @@ export default class HowToAnimation extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
+        //justifyContent: "center",
     },
     container1: {
         padding: 20,
@@ -214,11 +214,13 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         backgroundColor: "transparent",
+        justifyContent: "center",
     },
     lampContainer: {
         alignItems: "center",
         flexGrow: 1,
-        justifyContent: "flex-start",
+        top: -90, //123 inte universiellt
+        //justifyContent: "flex-start",
     },  
     lamp: {
         width: 100,
@@ -255,7 +257,7 @@ const styles = StyleSheet.create({
     */
     appleicons: {
         backgroundColor: "rgba(0,0,0,0.1)",
-        paddingVertical: 10,
+        paddingVertical: 13,
         top: -5,
     },
     /*

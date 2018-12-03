@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     */
     appleicons: {
         backgroundColor: "rgba(0,0,0,0.1)",
-        paddingVertical: 10,
+        paddingVertical: 11,
     },
     icons: {
         height: 35,
