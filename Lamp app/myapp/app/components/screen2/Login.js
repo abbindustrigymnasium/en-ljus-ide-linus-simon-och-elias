@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, Animated, StatusBar, TextInput } from "react-native";
+import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, Animated, StatusBar, TextInput, Easing, TouchableWithoutFeedback } from "react-native";
 import { LinearGradient } from 'expo';
 
 
@@ -28,13 +28,14 @@ export default class Login extends Component {
 		});
     }
 
-    constructor(){
-        super();
-        this.state={
+    constructor(props) {
+        super(props);
+        this.Dark = new Animated.ValueXY({ x: 10000, y: 10000 })
+        this.state = {
             imageURL : "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png",
-            //zIndex: new Animated.Value(-10), //index value
             str: new Animated.Value("strength"), //idk why no put strength
             strength: [],
+            opacity: new Animated.Value(0),
         }
     }
 
@@ -43,16 +44,39 @@ export default class Login extends Component {
             imageURL : "https://i.imgur.com/d3is5pq.png"
         })
     }
-/*
-    InfoAnimation = () => { //infoamiationen
-        Animated.timing(this.state.zIndex, {
-            toValue: 10,
-            useNativeDriver: true,
+
+    _InfoAnimation = () => {
+        Animated.timing(this.Dark, {
+            toValue: { x: -1000, y: -1000 },
+            duration: 0,
+            esing: Easing.linear,
+        }).start(() => {
+        //    Animated.timing(this.state.opacity, {
+        //        toValue: 0.75,
+        //        duration: 500,
+        //        useNativeDriver: true,
+        //}).start(() => {
+
+        });
+        //})
+    }
+
+    _InfoAnimationNo = () => {
+        //Animated.timing(this.state.opacity, {
+        //    toValue: 0,
+        //    duration: 500,
+        //    useNativeDriver: true,
+        //}).start(() => {
+            Animated.timing(this.Dark, {
+                toValue: { x: 10000, y: 10000 },
+                duration: 0,
+                esing: Easing.linear,
         }).start(() => {
 
         });
+        //})
     }
-*/
+
 
 LampOnOff = () => {
     Animated.timing(this.state.str, {
@@ -178,6 +202,11 @@ DeleteDataFromServer=() => {
 
                         <KeyboardAvoidingView behavior="padding" style={styles.container}>
                         <View style={styles.flexdirection}>
+                                <TouchableOpacity onPress={this._InfoAnimation}>
+                                    <Image style={styles.icons}
+                                        source={{uri:"https://i.imgur.com/CMimq9D.png"}}>
+                                    </Image>
+                                </TouchableOpacity>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
                                     <Image style={styles.icons}
                                         source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
@@ -205,11 +234,11 @@ DeleteDataFromServer=() => {
                                 <StatusBar barStyle="light-content"/>
 
                                 <TextInput
-                                    placeholder="namn eller email"
+                                    placeholder="ID"
                                     placeholderTextColor="rgba(255,255,255,0.7)"
                                     returnKeyType="next"
                                     onSubmitEditing={() => this.passwordInput.focus()}
-                                    keyboardType="email-address"
+                                    //keyboardType="email-address"
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     style={styles.input}
@@ -217,7 +246,7 @@ DeleteDataFromServer=() => {
                                 />
 
                                 <TextInput
-                                    placeholder="lösenord"
+                                    placeholder="PIN"
                                     placeholderTextColor="rgba(255,255,255,0.7)"
                                     returnKeyType="go"
                                     secureTextEntry
@@ -227,8 +256,17 @@ DeleteDataFromServer=() => {
                                 />
                                 
                                 <TouchableOpacity style={styles.buttonContainer}>
-                                    <Text style={styles.buttonText}>LOGGA IN</Text>
+                                    <Text style={styles.buttonText}>ANSLUT</Text>
                                 </TouchableOpacity>
+
+                                <TouchableWithoutFeedback onPress={this._InfoAnimationNo}>
+                                    <Animated.View
+                                        style={[styles.shadow,
+                                        {opacity:this.opacity},
+                                        this.Dark.getLayout(),
+                                        ]}>
+                                    </Animated.View>
+                                </TouchableWithoutFeedback>
 
                             </View>
 
@@ -264,14 +302,14 @@ const styles = StyleSheet.create({
         textAlign: "center",
         opacity: 0.9,
     },
-    /*
+    
     shadow: { //gör det transparent någonstans idk kom på något
-        backgroundColor: "rgba(0,0,0,0.75)",
-        width: 1000,
-        height: 1000,
+        backgroundColor: "rgba(0,0,0,0.65)",
+        width: 5000,
+        height: 5000,
         position: "absolute",
     },
-    */
+    
     appleicons: {
         backgroundColor: "rgba(0,0,0,0.1)",
         paddingVertical: 11,

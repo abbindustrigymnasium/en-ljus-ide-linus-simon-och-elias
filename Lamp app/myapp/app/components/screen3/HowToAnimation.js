@@ -1,5 +1,5 @@
 import React, {Component} from "react"; //nu äre uppdated
-import {StyleSheet, Image, Text, TouchableOpacity, View, Animated, Easing, Dimensions} from "react-native";
+import {StyleSheet, Image, Text, TouchableOpacity, View, Animated, Easing, Dimensions, TouchableWithoutFeedback} from "react-native";
 import { LinearGradient, Constants } from 'expo';
 //var { width, height } = Dimensions.get("window");
 
@@ -7,6 +7,7 @@ export default class HowToAnimation extends Component {
     constructor(props) {
         super(props);
         this.moveAnimation = new Animated.ValueXY({ x: 0, y:-100 })
+        this.Dark = new Animated.ValueXY({ x: 10000, y: 10000 })
         this.state = {
             navigation: this.props.navigation,
             opacity: new Animated.Value(0.4),
@@ -22,6 +23,39 @@ export default class HowToAnimation extends Component {
         this.setState({index: index});
     }
 */
+
+_InfoAnimation = () => {
+    Animated.timing(this.Dark, {
+        toValue: { x: -1000, y: -1000 },
+        duration: 0,
+        esing: Easing.linear,
+    }).start(() => {
+    //    Animated.timing(this.state.opacity, {
+    //        toValue: 0.75,
+    //        duration: 500,
+    //        useNativeDriver: true,
+    //}).start(() => {
+
+    });
+    //})
+}
+
+_InfoAnimationNo = () => {
+    //Animated.timing(this.state.opacity, {
+    //    toValue: 0,
+    //    duration: 500,
+    //    useNativeDriver: true,
+    //}).start(() => {
+        Animated.timing(this.Dark, {
+            toValue: { x: 10000, y: 10000 },
+            duration: 0,
+            esing: Easing.linear,
+    }).start(() => {
+
+    });
+    //})
+}
+
 
     _lampAnimation = () => {
         Animated.timing(this.moveAnimation, {
@@ -142,6 +176,11 @@ export default class HowToAnimation extends Component {
                     <View style={styles.appleicons}/>
                     
                     <View style={styles.flexdirection}>
+                        <TouchableOpacity onPress={this._InfoAnimation}>
+                            <Image style={styles.icons}
+                                source={{uri:"https://i.imgur.com/CMimq9D.png"}}>
+                            </Image>
+                        </TouchableOpacity>
                         <Image style={styles.icons}
                             opacity={0.35}
                             source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
@@ -189,6 +228,15 @@ export default class HowToAnimation extends Component {
 
                 </LinearGradient>
 
+                <TouchableWithoutFeedback onPress={this._InfoAnimationNo}>
+                    <Animated.View
+                        style={[styles.shadow,
+                        {opacity:this.opacity},
+                        this.Dark.getLayout(),
+                        ]}>
+                    </Animated.View>
+                </TouchableWithoutFeedback>
+                
             </View>
         );
     }
@@ -306,4 +354,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 100, //123 inte lika på alla skärmar
     },
     */
+    shadow: { //gör det transparent någonstans idk kom på något
+        backgroundColor: "rgba(0,0,0,0.65)",
+        width: 5000,
+        height: 5000,
+        position: "absolute",
+    },
 });
