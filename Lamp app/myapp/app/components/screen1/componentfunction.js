@@ -1,12 +1,12 @@
 import React from "react";
 import Slider from "react-native-slider";
-import { AppRegistry, StyleSheet, View, Text, Switch } from "react-native";
+import { AppRegistry, StyleSheet, View, Text, Switch, TouchableOpacity, Image, Animated, Easing, TouchableWithoutFeedback } from "react-native";
 import { LinearGradient, Constants } from 'expo';
 
 export default class Componentfunction extends React.Component {
     constructor(props) {
         super(props);
-
+        this.Dark = new Animated.ValueXY({ x: 10000, y: 10000 })
         this.state = {
             Name: "1", 
             value: 100, 
@@ -77,6 +77,38 @@ export default class Componentfunction extends React.Component {
 
     }
 
+    _InfoAnimation = () => {
+        Animated.timing(this.Dark, {
+            toValue: { x: -1000, y: -1000 },
+            duration: 0,
+            esing: Easing.linear,
+        }).start(() => {
+        //    Animated.timing(this.state.opacity, {
+        //        toValue: 0.75,
+        //        duration: 500,
+        //        useNativeDriver: true,
+        //}).start(() => {
+
+        });
+        //})
+    }
+
+    _InfoAnimationNo = () => {
+        //Animated.timing(this.state.opacity, {
+        //    toValue: 0,
+        //    duration: 500,
+        //    useNativeDriver: true,
+        //}).start(() => {
+            Animated.timing(this.Dark, {
+                toValue: { x: 10000, y: 10000 },
+                duration: 0,
+                esing: Easing.linear,
+        }).start(() => {
+
+        });
+        //})
+    }
+
     render() {
 
     //if (!this.props.visible) {
@@ -85,6 +117,30 @@ export default class Componentfunction extends React.Component {
   
     return (
         <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
+                    <View style={styles.appleicons}/>
+                        <View style={styles.flexdirection}>
+                                <TouchableOpacity onPress={this._InfoAnimation}>
+                                    <Image style={styles.icons}
+                                        source={{uri:"https://i.imgur.com/CMimq9D.png"}}>
+                                    </Image>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
+                                    <Image style={styles.icons}
+                                        source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
+                                    </Image>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
+                                    <Image style={styles.icons}
+                                        source={{uri:"https://i.imgur.com/q8yK9xy.png"}}> 
+                                    </Image>
+                                </TouchableOpacity>
+                                    <Image style={styles.icons} 
+                                        opacity={0.35}
+                                        source={{uri:"https://i.imgur.com/aMWWAck.png"}}> 
+                                    </Image>
+                            </View>
+
+
       <View style={styles.container}>
       <View style={styles.knappen}>
       <Switch style={styles.button}
@@ -116,6 +172,17 @@ export default class Componentfunction extends React.Component {
         <Text style={styles.slidertext}>
           Kallt: {this.state.value1}
         </Text>
+
+
+                                <TouchableWithoutFeedback onPress={this._InfoAnimationNo}>
+                                    <Animated.View
+                                        style={[styles.shadow,
+                                        {opacity:this.opacity},
+                                        this.Dark.getLayout(),
+                                        ]}>
+                                    </Animated.View>
+                                </TouchableWithoutFeedback>
+
       </View>
     </LinearGradient>
     );
@@ -146,6 +213,12 @@ const styles = StyleSheet.create({
   button: {
       justifyContent: "center",
   },
+  shadow: { //gör det transparent någonstans idk kom på något
+    backgroundColor: "rgba(0,0,0,0.65)",
+    width: 5000,
+    height: 5000,
+    position: "absolute",
+},
 
   buttontext: {
     fontSize: 15,
@@ -154,5 +227,19 @@ const styles = StyleSheet.create({
   knappen: {
     alignItems: "center",
   },
-
+  appleicons: {
+    backgroundColor: "rgba(0,0,0,0.1)",
+    paddingVertical: 11,
+},
+icons: {
+    height: 35,
+    width: 35,
+    marginHorizontal: 10,
+},
+flexdirection: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    padding: 10,
+},
 });
