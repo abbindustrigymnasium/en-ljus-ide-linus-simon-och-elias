@@ -117,106 +117,120 @@ export default class Componentfunction extends React.Component {
   //}
     return (
         <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
-                    <View style={styles.appleicons}/>
-                        <View style={styles.flexdirection}>
-                                <TouchableOpacity onPress={this._InfoAnimation}>
-                                    <Image style={styles.icons}
-                                        source={{uri:"https://i.imgur.com/CMimq9D.png"}}>
-                                    </Image>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
-                                    <Image style={styles.icons}
-                                        source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
-                                    </Image>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
-                                    <Image style={styles.icons}
-                                        source={{uri:"https://i.imgur.com/q8yK9xy.png"}}> 
-                                    </Image>
-                                </TouchableOpacity>
-                                    <Image style={styles.icons} 
-                                        opacity={0.35}
-                                        source={{uri:"https://i.imgur.com/aMWWAck.png"}}> 
-                                    </Image>
-                            </View>
 
+            <View style={styles.appleicons}/>
 
-      <View style={styles.container}>
-      <View style={styles.knappen}>
+            <View style={styles.flexdirection}>
 
-      <Switch style={styles.button}
-            value={this.state.switchValue}
-            onValueChange={(val) => this.setState({ switchValue : val })}
-            />
+                <TouchableOpacity onPress={this._InfoAnimation}>
+                    <Image style={styles.icons}
+                        source={{uri:"https://i.imgur.com/CMimq9D.png"}}>
+                    </Image>
+                </TouchableOpacity>
 
-        
-            <Text style={styles.buttontext}>
-            Avståndssensor: </Text>
-    </View>
-    <View style={styles.flexdirectionslider}>
-    <TouchableOpacity>
-    <Image style={styles.iconssliderleft}
-            source={{uri:"https://i.imgur.com/a8yaSvW.png"}}>
-        </Image>
-    </TouchableOpacity>
-          <Slider style={styles.slider}
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHowTo', {})}>
+                    <Image style={styles.icons}
+                        source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
+                    </Image>
+                </TouchableOpacity>
 
-          step={1}
-          maximumValue={100}
-          value={this.state.value}
-          onValueChange={value => this.setState({ value })}
-          onSlidingComplete={ this.UpdateDataToServer}
-        />
-            <TouchableOpacity>
-            <Image style={styles.iconssliderright}
-            source={{uri:"https://i.imgur.com/a8yaSvW.png"}}>
-        </Image>
-        </TouchableOpacity>
-        </View>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
+                    <Image style={styles.icons}
+                        source={{uri:"https://i.imgur.com/q8yK9xy.png"}}> 
+                    </Image>
+                </TouchableOpacity>
 
+                <Image style={styles.icons} 
+                    opacity={0.35}
+                    source={{uri:"https://i.imgur.com/aMWWAck.png"}}> 
+                </Image>
+            </View>
+
+            <View style={styles.container}>
+
+                <View style={styles.knappen}>
+
+                    <Switch style={styles.button}
+                        value={this.state.switchValue}
+                        onValueChange={(val) => this.setState({ switchValue : val })}
+                    />
+
+                    <Text style={styles.buttontext}>
+                        Avståndssensor:
+                    </Text>
+
+                </View>
+
+                <View style={styles.flexdirectionslider}>
+
+                    <TouchableOpacity>
+                        <Image style={styles.iconssliderleft}
+                            source={{uri:"https://i.imgur.com/a8yaSvW.png"}}>
+                        </Image>
+                    </TouchableOpacity>
+
+                    <Slider style={styles.slider}
+                        step={1}
+                        maximumValue={100}
+                        value={this.state.value}
+                        onValueChange={value => this.setState({ value })}
+                        onSlidingComplete={ this.UpdateDataToServer}
+                    />
+
+                    <TouchableOpacity>
+                        <Image style={styles.iconssliderright}
+                            source={{uri:"https://i.imgur.com/a8yaSvW.png"}}>
+                        </Image>
+                    </TouchableOpacity>
+
+                </View>
 
                 <Text style={styles.slidertext}>
-          Varmt: {this.state.value}
-        </Text>
-
+                    Varmt: {this.state.value}
+                </Text>
         
-        <View style={styles.flexdirectionslider}>
-        <TouchableOpacity>
-        <Image style={styles.iconssliderleft}
-            source={{uri:"https://i.imgur.com/GiOywnt.png"}}>
-        </Image>
-        </TouchableOpacity>
-    <Slider style={styles.slider}
-          step={1}
-          maximumValue={100}
-          value={this.state.value1}
-          onValueChange={value1 => this.setState({ value1 })}
-          onSlidingComplete={ this.UpdateDataToServer}
-        />
-            <TouchableOpacity>
-            <Image style={styles.iconssliderright}
-            source={{uri:"https://i.imgur.com/GiOywnt.png"}}>
-        </Image>
-        </TouchableOpacity>
-        </View>
-        <Text style={styles.slidertext}>
-          Kallt: {this.state.value1}
-        </Text>
+                <View style={styles.flexdirectionslider}>
 
+                    <TouchableOpacity>
+                        <Image style={styles.iconssliderleft}
+                            source={{uri:"https://i.imgur.com/GiOywnt.png"}}>
+                        </Image>
+                    </TouchableOpacity>
 
-                                <TouchableWithoutFeedback onPress={this._InfoAnimationNo}>
-                                    <Animated.View
-                                        style={[styles.shadow,
-                                        {opacity:this.opacity},
-                                        this.Dark.getLayout(),
-                                        ]}>
-                                    </Animated.View>
-                                </TouchableWithoutFeedback>
+                    <Slider style={styles.slider}
+                        step={1}
+                        maximumValue={100}
+                        value={this.state.value1}
+                        onValueChange={value1 => this.setState({ value1 })}
+                        onSlidingComplete={ this.UpdateDataToServer}
+                    />
 
-      </View>
-    </LinearGradient>
-    );
-  }
+                    <TouchableOpacity>
+                        <Image style={styles.iconssliderright}
+                            source={{uri:"https://i.imgur.com/GiOywnt.png"}}>
+                        </Image>
+                    </TouchableOpacity>
+
+                </View>
+
+                <Text style={styles.slidertext}>
+                    Kallt: {this.state.value1}
+                </Text>
+
+                <TouchableWithoutFeedback onPress={this._InfoAnimationNo}>
+                    <Animated.View
+                        style={[styles.shadow,
+                        {opacity:this.opacity},
+                        this.Dark.getLayout(),
+                        ]}>
+                    </Animated.View>
+                </TouchableWithoutFeedback>
+
+            </View>
+
+        </LinearGradient>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
