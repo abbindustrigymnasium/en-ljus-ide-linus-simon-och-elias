@@ -9,7 +9,8 @@ export default class Componentfunction extends React.Component {
         this.Dark = new Animated.ValueXY({ x: 10000, y: 10000 })
         this.state = {
             Name: "1", 
-            value: 100, 
+            value: 100,
+            value1: 100,
             fetch:'http://192.168.0.112:3000/light/' 
         }
     }
@@ -114,7 +115,6 @@ export default class Componentfunction extends React.Component {
     //if (!this.props.visible) {
      //return false; 
   //}
-  
     return (
         <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
                     <View style={styles.appleicons}/>
@@ -143,13 +143,22 @@ export default class Componentfunction extends React.Component {
 
       <View style={styles.container}>
       <View style={styles.knappen}>
+
       <Switch style={styles.button}
             value={this.state.switchValue}
             onValueChange={(val) => this.setState({ switchValue : val })}
             />
+
+        
             <Text style={styles.buttontext}>
             Avståndssensor: </Text>
     </View>
+    <View style={styles.flexdirectionslider}>
+    <TouchableOpacity>
+    <Image style={styles.iconssliderleft}
+            source={{uri:"https://i.imgur.com/a8yaSvW.png"}}>
+        </Image>
+    </TouchableOpacity>
           <Slider style={styles.slider}
 
           step={1}
@@ -158,17 +167,38 @@ export default class Componentfunction extends React.Component {
           onValueChange={value => this.setState({ value })}
           onSlidingComplete={ this.UpdateDataToServer}
         />
+            <TouchableOpacity>
+            <Image style={styles.iconssliderright}
+            source={{uri:"https://i.imgur.com/a8yaSvW.png"}}>
+        </Image>
+        </TouchableOpacity>
+        </View>
+
+
                 <Text style={styles.slidertext}>
           Varmt: {this.state.value}
         </Text>
+
+        
+        <View style={styles.flexdirectionslider}>
+        <TouchableOpacity>
+        <Image style={styles.iconssliderleft}
+            source={{uri:"https://i.imgur.com/GiOywnt.png"}}>
+        </Image>
+        </TouchableOpacity>
     <Slider style={styles.slider}
           step={1}
           maximumValue={100}
-          value1={this.state.value1}
+          value={this.state.value1}
           onValueChange={value1 => this.setState({ value1 })}
           onSlidingComplete={ this.UpdateDataToServer}
         />
-
+            <TouchableOpacity>
+            <Image style={styles.iconssliderright}
+            source={{uri:"https://i.imgur.com/GiOywnt.png"}}>
+        </Image>
+        </TouchableOpacity>
+        </View>
         <Text style={styles.slidertext}>
           Kallt: {this.state.value1}
         </Text>
@@ -191,10 +221,9 @@ export default class Componentfunction extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 25,
+    flex: 1,
     alignItems: "stretch",
     justifyContent: "center",
-    
     
   },
 
@@ -206,8 +235,7 @@ const styles = StyleSheet.create({
   },
 
   slider: {
-    marginLeft: 5,
-    marginRight: 5,
+    width: 225, //undvik 123
   },
 
   button: {
@@ -236,10 +264,28 @@ icons: {
     width: 35,
     marginHorizontal: 10,
 },
+iconssliderright: {
+    height: 30,
+    width: 30,
+    marginHorizontal: 5,
+},
+iconssliderleft: {
+    height: 18,
+    width: 18,
+    marginHorizontal: 5,
+},
+
 flexdirection: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
     padding: 10,
 },
+flexdirectionslider: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+},
+
 });
