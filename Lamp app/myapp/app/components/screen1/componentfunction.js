@@ -144,6 +144,7 @@ export default class Componentfunction extends React.Component {
                     opacity={0.35}
                     source={{uri:"https://i.imgur.com/aMWWAck.png"}}> 
                 </Image>
+                
             </View>
 
             <View style={styles.container}>
