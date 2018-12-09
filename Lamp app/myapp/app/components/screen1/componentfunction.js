@@ -14,6 +14,30 @@ export default class Componentfunction extends React.Component {
             fetch:'http://192.168.0.112:3000/light/' 
         }
     }
+
+    Hot = () => {
+        this.setState({
+            value: 100,
+        })
+    }
+    
+    noHot = () => {
+        this.setState({
+            value: 0,
+        })
+    }
+
+    Cold = () => {
+        this.setState({
+            value1: 100,
+        })
+    }
+
+    noCold = () => {
+        this.setState({
+            value1: 0,
+        })
+    }
   
   componentDidMount() { //körs när allt är inladdat
         let self = this; // kallar this för self för att lättare använda
@@ -146,10 +170,21 @@ export default class Componentfunction extends React.Component {
                 </Image>
                 
             </View>
+            
+{/*
+            <View style={styles.logoContainer}>
+                <Image style={styles.logo} source={{uri: "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png"}}/>
+                <Text style={styles.title}>En ljus ide</Text>
+            </View>
+*/}
 
             <View style={styles.container}>
 
-                <View style={styles.knappen}>
+                <View style={styles.flexdirectionbutton}>
+
+                    <Text style={styles.buttontext}>
+                        SENSOR:
+                    </Text>
 
                     <Switch style={styles.button}
                         value={this.state.switchValue}
@@ -157,14 +192,19 @@ export default class Componentfunction extends React.Component {
                     />
 
                     <Text style={styles.buttontext}>
-                        Avståndssensor:
+                        DAGLJUS:
                     </Text>
+
+                    <Switch style={styles.button}
+                        value={this.state.switchValue}
+                        onValueChange={(val) => this.setState({ switchValue : val })}
+                    />
 
                 </View>
 
                 <View style={styles.flexdirectionslider}>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.noHot}>
                         <Image style={styles.iconssliderleft}
                             source={{uri:"https://i.imgur.com/a8yaSvW.png"}}>
                         </Image>
@@ -178,7 +218,7 @@ export default class Componentfunction extends React.Component {
                         onSlidingComplete={ this.UpdateDataToServer}
                     />
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.Hot}>
                         <Image style={styles.iconssliderright}
                             source={{uri:"https://i.imgur.com/a8yaSvW.png"}}>
                         </Image>
@@ -192,7 +232,7 @@ export default class Componentfunction extends React.Component {
         
                 <View style={styles.flexdirectionslider}>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.noCold}>
                         <Image style={styles.iconssliderleft}
                             source={{uri:"https://i.imgur.com/GiOywnt.png"}}>
                         </Image>
@@ -206,7 +246,7 @@ export default class Componentfunction extends React.Component {
                         onSlidingComplete={ this.UpdateDataToServer}
                     />
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.Cold}>
                         <Image style={styles.iconssliderright}
                             source={{uri:"https://i.imgur.com/GiOywnt.png"}}>
                         </Image>
@@ -267,9 +307,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
 
   },
-  knappen: {
-    alignItems: "center",
-  },
+
   appleicons: {
     backgroundColor: "rgba(0,0,0,0.1)",
     paddingVertical: 11,
@@ -301,6 +339,28 @@ flexdirectionslider: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+},
+flexdirectionbutton: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+},
+
+logoContainer: {
+    alignItems: "center",
+    flexGrow: 1,
+},  
+logo: {
+    width: 150,
+    height: 150,
+},
+title: {
+    color: "#ffffff",
+    marginTop: 10,
+    width: 110,
+    textAlign: "center",
+    opacity: 0.9,
 },
 
 });
