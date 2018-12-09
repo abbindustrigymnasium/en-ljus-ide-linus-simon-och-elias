@@ -201,7 +201,9 @@ DeleteDataFromServer=() => {
                     <View style={styles.appleicons}/>
 
                         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-                        <View style={styles.flexdirection}>
+
+                            <View style={styles.flexdirection}>
+
                                 <TouchableOpacity onPress={this._InfoAnimation}>
                                     <Image style={styles.icons}
                                         source={{uri:"https://i.imgur.com/CMimq9D.png"}}>
@@ -222,6 +224,7 @@ DeleteDataFromServer=() => {
                                     </Image>
                                 </TouchableOpacity>
                             </View>
+                            
                             <View style={styles.logoContainer}>
                                 <TouchableOpacity onPress={this.Load_New_Image}>
                                     <Image style={styles.logo} source={{uri: this.state.imageURL}}/>
