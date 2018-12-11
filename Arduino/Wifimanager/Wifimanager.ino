@@ -12,8 +12,7 @@ bool Powervalue = false;
 bool SensorValue = false;
 int Coldvalue = 0;
 int Hotvalue = 0; 
-int Strvalue = 0;
-int mintimer = 0;
+int Mintimer
 bool LampExist = false;
 bool GottenValues = false;
       
@@ -58,7 +57,7 @@ String SendtoDB(String host){
       root["Power"]=Powervalue;
       root["Hot"]=Hotvalue;
       root["Cold"]=Coldvalue;
-      root["strength"]=Strvalue;
+      root["SensorValue"]=SensorValue;
       String buffer;
       root.printTo(buffer);
       if(LampExist==true){
@@ -92,13 +91,11 @@ void UpdateValues(String json){
     if(data1!="none") {
       bool data2=root["Power"];
       int data3=root["Hot"];
-      int data4=root["Cold"];
-      int data5=root["Strength"];
+      int data4=root["Cold"];    
       Lampname=data1;
       Powervalue=data2;
       Hotvalue=data3;
       Coldvalue=data4;
-      Strvalue=data5;
       LampExist=true;
     } else{
       String Mess=root["message"];
