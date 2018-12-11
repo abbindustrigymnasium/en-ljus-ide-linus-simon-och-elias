@@ -3,8 +3,10 @@ typedef enum HandStates{
   Hand2,
   NoHand,
   NoHand2,
-  StrCheck,
-  StrUpdate,
+  HotCheck,
+  HotUpdate,
+  ColdCheck,
+  ColdUpdate,
   Power,
   SensorPower,
 };
@@ -16,7 +18,8 @@ HandStates HState;
 bool PowerValue = false;
 bool SensorSetting = true;
 int PotValue = 75;
-int StrValue = 0;
+int HotValue = 0;
+int ColdValue = 0;
 
 void setup() {
   pinMode(DO_RLed, OUTPUT);
@@ -28,17 +31,16 @@ void setup() {
 
 void loop() {
   switch (HState){
+  
     case Power:
     delay(100);
     if (PowerValue = false) {
-    HState = NoHand;
+    HState = Power;
     Serial.println("OFF");
     } else { 
-    HState = SensorPower;
+    HState = NoHand;
+break;
 
-    case SensorPower:
-      if
-    
     case NoHand:
       PotValue = analogRead(AI_Pot);
       Serial.println(PotValue);
@@ -47,17 +49,27 @@ void loop() {
       HState = Hand;
     } else {
       Serial.print("a");
-      HState = Power;
+      HState = HotCheck;
     }
   break;
   
-    case StrCheck:
-    Serial.println(StrValue);
+    case HotCheck:
+    Serial.println(HotValue);
     delay(100); 
-    if (StrValue !=50) {
-      HState = StrUpdate ;
+    if (HotValue >=1) {
+      HState = HotUpdate ;
     } else {
-      Serial.print("StrUpdt");
+      Serial.print("HotUpdt");
+      HState = ColdCheck;
+    }    
+  break;
+    case ColdCheck:
+    Serial.println(ColdValue);
+    delay(100); 
+    if (HotValue >= 1) {
+      HState = ColdUpdate ;
+    } else {
+      Serial.print("ColdUpdt");
       HState = NoHand;
     }    
   break;
@@ -73,18 +85,32 @@ void loop() {
     }    
   break;
   
-    case StrUpdate:        
-         Serial.println(StrValue);
+    case HotUpdate:        
+         Serial.println(HotValue);
          delay(100);
-         if (StrValue !=50) {;
-         HState = StrUpdate ;
+         if (ColdValue !=50) {;
+         HState = ColdUpdate ;
          } else {
-         Serial.print("StrLock");
-         analogWrite(DO_RLed, StrValue);
+         Serial.print("HotLock");
+         analogWrite(DO_RLed, HotValue);
          delay(100); 
          HState = NoHand;
          }
   break;
+
+      case ColdUpdate:        
+         Serial.println(ColdValue);
+         delay(100);
+         if (ColdValue > 50) {;
+         HState = ColdUpdate ;
+         } else {
+         Serial.print("ColdLock");
+         analogWrite(DO_RLed, HotValue);
+         delay(100); 
+         HState = NoHand;
+         }
+  break;
+    
     
     case NoHand2:
       for (int q=0; q <= 50; q++){

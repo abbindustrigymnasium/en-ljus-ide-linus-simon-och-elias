@@ -12,7 +12,7 @@ void loop() {
   // put your main code here, to run repeatedly:
 
  while ( i <= Mintimer ){
-  delay(600);
+  delay(60000);
   powervalue=true;
   Serial.println(Mintimer);
   Serial.println(i);
