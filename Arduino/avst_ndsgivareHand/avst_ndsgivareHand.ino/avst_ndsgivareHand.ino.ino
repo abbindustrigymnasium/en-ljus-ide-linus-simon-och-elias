@@ -34,6 +34,7 @@ void loop() {
   
     case Power:
     delay(100);
+    Serial.println("abcd");
     if (PowerValue = false) {
     HState = Power;
     Serial.println("OFF");

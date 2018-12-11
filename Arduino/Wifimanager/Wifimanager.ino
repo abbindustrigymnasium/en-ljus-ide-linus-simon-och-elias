@@ -17,9 +17,8 @@ bool GottenValues = false;
       
 void ConnecttoDB(String input){
   
-      const int httpPort=3001;
-      const char*host="192.168.0.100";
-
+      const int httpPort = 3001;
+      const char*host = " http://iot.abbindustrigymnasium.se/products"; 
       Serial.print("connecting to ");
       Serial.println(host);
 
@@ -104,8 +103,8 @@ void UpdateValues(String json){
 }
 
 void UpdatingLamp(){
-  analogWrite(13, Strvalue);
-  Serial.println(Strvalue);
+  analogWrite(13, Hotvalue);
+  Serial.println(Hotvalue);
 }
 
 void setup() {
