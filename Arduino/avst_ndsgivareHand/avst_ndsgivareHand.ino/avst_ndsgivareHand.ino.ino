@@ -40,17 +40,22 @@ void loop() {
     } else { 
     HState = NoHand;
 break;
-
+ 
     case NoHand:
       PotValue = analogRead(AI_Pot);
       Serial.println(PotValue);
       delay(100);
+      if (SensorSetting = false){
+      HState = HotCheck;
+      }  else  {
+     
     if (PotValue > 25)  {
       HState = Hand;
-    } else {
+    } else { 
       Serial.print("a");
       HState = HotCheck;
     }
+  }
   break;
   
     case HotCheck:
