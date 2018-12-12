@@ -85,7 +85,7 @@ String SendtoDB(String host){
 }
 void ConnecttoDB(String input){
       const int httpPort=3001;
-      const char*host="192.168.0.100";
+      const char*host="http://iot.abbindustrigymnasium.se/";
 
       Serial.print("connecting to ");
       Serial.println(host);
@@ -132,7 +132,7 @@ while (client.available()) {
   Serial.println();
   Serial.println("closing connection");
 }
-  }
+  
     
 
 
@@ -150,7 +150,9 @@ void UpdateValues(String json){
       Hotvalue=data3;
       Coldvalue=data4;
       LampExist=true;
-    } else{
+    }
+     else
+    {
       String Mess=root["message"];
       Serial.print(Mess);
     }
