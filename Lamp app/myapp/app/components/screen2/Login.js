@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo';
 
 
 export default class Login extends Component {
-
+/*
 	componentDidMount(){
 		let self= this;
 			fetch("http://iot.abbindustrigymnasium.se:3001/grupp1/1", {
@@ -27,6 +27,7 @@ export default class Login extends Component {
 			console.error(error);
 		});
     }
+    */
 
     constructor(props) {
         super(props);
@@ -86,7 +87,7 @@ LampOnOff = () => {
 
     });
 }
-
+/*
 WriteOutFromBackend(){
     return this.state.products.map((produkt) => {
         return (
@@ -180,6 +181,7 @@ DeleteDataFromServer=() => {
         else
             alert("Write a name and a price.")
         }
+        */
 
         /* //info knapp
             <TouchableOpacity onPress={this.InfoAnimation}>
