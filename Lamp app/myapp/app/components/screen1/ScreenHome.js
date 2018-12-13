@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Componentfunction from "./componentfunction";
-//import Componentfunction1 from "./componentfunction1";
 
 export default class ScreenHome extends React.Component {
     

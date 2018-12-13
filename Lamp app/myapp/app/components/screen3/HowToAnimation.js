@@ -1,7 +1,6 @@
-import React, {Component} from "react"; //nu äre uppdated
-import {StyleSheet, Image, Text, TouchableOpacity, View, Animated, Easing, Dimensions, TouchableWithoutFeedback} from "react-native";
-import { LinearGradient, Constants } from 'expo';
-//var { width, height } = Dimensions.get("window");
+import React, {Component} from "react";
+import {StyleSheet, Image, Text, TouchableOpacity, View, Animated, Easing, TouchableWithoutFeedback} from "react-native";
+import { LinearGradient } from 'expo';
 
 export default class HowToAnimation extends Component {
     constructor(props) {
@@ -12,17 +11,8 @@ export default class HowToAnimation extends Component {
             navigation: this.props.navigation,
             opacity: new Animated.Value(0.4),
             opacityfar: new Animated.Value(0.15),
-            //position: new Animated.ValueXY({x:0, y:0}),
-            //ValueXY: new Animated.ValueXY({ x: 0, y: 0 }),
-            //index: new Animated.Value(-10), //index value
         }
     }
-
-/* //index animation
-    onPress=()=>{
-        this.setState({index: index});
-    }
-*/
 
 _InfoAnimation = () => {
     Animated.timing(this.Dark, {
@@ -30,22 +20,11 @@ _InfoAnimation = () => {
         duration: 0,
         esing: Easing.linear,
     }).start(() => {
-    //    Animated.timing(this.state.opacity, {
-    //        toValue: 0.75,
-    //        duration: 500,
-    //        useNativeDriver: true,
-    //}).start(() => {
 
     });
-    //})
 }
 
 _InfoAnimationNo = () => {
-    //Animated.timing(this.state.opacity, {
-    //    toValue: 0,
-    //    duration: 500,
-    //    useNativeDriver: true,
-    //}).start(() => {
         Animated.timing(this.Dark, {
             toValue: { x: 10000, y: 10000 },
             duration: 0,
@@ -53,7 +32,6 @@ _InfoAnimationNo = () => {
     }).start(() => {
 
     });
-    //})
 }
 
 
@@ -136,35 +114,6 @@ _InfoAnimationNo = () => {
                     });
                 }
 
-                /*
-                <View //dimmar skärmen
-                    style={[styles.shadow,
-                    {zIndex:this.state.index},
-                    ]}>
-                </View>
-
-                <View style={styles.container2}> //gradient knapp
-                <LinearGradient
-                    colors={["#00fff", "#17c8ff", "#329bff", "#4c64ff", "#6536ff", "#8000ff"]}
-                    start={{x:0.0, y:1.0}} end={{x:1.0, y:1.0}}
-                    style={{ height: 48, width: 200, alignItems: "center", justifyContent: "center"}}
-                >
-                    <TouchableOpacity style={styles.buttonContainer}>
-                        <Text style={styles.buttonText2}>
-                            LOGIN
-                        </Text>
-                    </TouchableOpacity>
-                </LinearGradient>
-                </View>
-                */
-/*
-                <TouchableOpacity onPress={this.InfoAnimation}> //info icon
-                <Image style={styles.iconss}
-                   source={{uri:"https://i.imgur.com/ckCwx8E.png"}}>
-                </Image>
-                </TouchableOpacity>
-*/
-
     render () {
         if (!this.props.visible) {
             return false;
@@ -176,25 +125,30 @@ _InfoAnimationNo = () => {
                     <View style={styles.appleicons}/>
                     
                     <View style={styles.flexdirection}>
+
                         <TouchableOpacity onPress={this._InfoAnimation}>
                             <Image style={styles.icons}
                                 source={{uri:"https://i.imgur.com/CMimq9D.png"}}>
                             </Image>
                         </TouchableOpacity>
+
                         <Image style={styles.icons}
                             opacity={0.35}
                             source={{uri:"https://i.imgur.com/WgNnO3R.png"}}>
                         </Image>
+
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenLogin', {})}>
                         <Image style={styles.icons}
                             source={{uri:"https://i.imgur.com/q8yK9xy.png"}}> 
                         </Image>
                         </TouchableOpacity>
+
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenHome', {})}>
                             <Image style={styles.icons} 
                                 source={{uri:"https://i.imgur.com/aMWWAck.png"}}> 
                             </Image>
                         </TouchableOpacity>
+
                     </View>
 
                     <View style={styles.lampContainer}>
@@ -272,9 +226,8 @@ const styles = StyleSheet.create({
     lampContainer: {
         alignItems: "center",
         flexGrow: 1,
-        top: -90, //123 inte universiellt
+        top: -90,
         zIndex: 10,
-        //justifyContent: "flex-start",
     },  
     lamp: {
         width: 100,
@@ -302,40 +255,11 @@ const styles = StyleSheet.create({
         top: 60,
         zIndex: 2,
     },
-    /*
-    shadow: { //gör det transparent någonstans idk kom på något
-        backgroundColor: "rgba(0,0,0,0.75)",
-        width: 1000,
-        height: 1000,
-        position: "absolute",
-    },
-    */
     appleicons: {
         backgroundColor: "rgba(0,0,0,0.1)",
         paddingVertical: 13,
         top: -5,
     },
-    /*
-    buttonContainer: {
-        width: 200,
-        alignItems: 'center',
-    },
-    buttonText2: {
-        textAlign: 'center',
-        backgroundColor: '#4C64FF',
-        padding: 15,
-        marginLeft: 1,
-        marginRight: 1,
-        width: 200,
-    },
-    container2: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: Constants.statusBarHeight,
-        backgroundColor: '#ecf0f1',
-    },
-    */
     flexdirection: {
         flex: 1,
         flexDirection: "row",
@@ -347,14 +271,7 @@ const styles = StyleSheet.create({
         width: 35,
         marginHorizontal: 10,
     },
-    /*
-    iconss: {
-        height: 35,
-        width: 35,
-        marginHorizontal: 100, //123 inte lika på alla skärmar
-    },
-    */
-    shadow: { //gör det transparent någonstans idk kom på något
+    shadow: {
         backgroundColor: "rgba(0,0,0,0.65)",
         width: 5000,
         height: 5000,

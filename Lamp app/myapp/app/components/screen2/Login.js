@@ -4,37 +4,12 @@ import { LinearGradient } from 'expo';
 
 
 export default class Login extends Component {
-/*
-	componentDidMount(){
-		let self= this;
-			fetch("http://iot.abbindustrigymnasium.se:3001/grupp1/1", {
-				method: "GET"
-				}).then((response) => response.json()).then((responseJson)=>{
-				console.log(responseJson);
-
-				var resultat = responseJson.result;
-				if (responseJson.message = "light1"){
-					if (responseJson.result.lenght!=0){
-						self.setState({
-							products: resultat
-						})
-					}
-                else
-                alert("not found")
-				console.log(this.state);
-			}
-		}).catch((error)=>{
-			console.error(error);
-		});
-    }
-    */
 
     constructor(props) {
         super(props);
         this.Dark = new Animated.ValueXY({ x: 10000, y: 10000 })
         this.state = {
             imageURL : "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png",
-            str: new Animated.Value("strength"), //idk why no put strength
             strength: [],
             opacity: new Animated.Value(0),
         }
@@ -52,22 +27,11 @@ export default class Login extends Component {
             duration: 0,
             esing: Easing.linear,
         }).start(() => {
-        //    Animated.timing(this.state.opacity, {
-        //        toValue: 0.75,
-        //        duration: 500,
-        //        useNativeDriver: true,
-        //}).start(() => {
 
         });
-        //})
     }
 
     _InfoAnimationNo = () => {
-        //Animated.timing(this.state.opacity, {
-        //    toValue: 0,
-        //    duration: 500,
-        //    useNativeDriver: true,
-        //}).start(() => {
             Animated.timing(this.Dark, {
                 toValue: { x: 10000, y: 10000 },
                 duration: 0,
@@ -75,121 +39,7 @@ export default class Login extends Component {
         }).start(() => {
 
         });
-        //})
     }
-
-
-LampOnOff = () => {
-    Animated.timing(this.state.str, {
-        toValue: str,
-        useNativeDriver: true,
-    }).start(() => {
-
-    });
-}
-/*
-WriteOutFromBackend(){
-    return this.state.products.map((produkt) => {
-        return (
-            <View key={produkt.key}> 
-                <Text style={styles.componentrecentcontenttext}> 
-                    {produkt.name} kostar {produkt.price} kr
-                </Text>
-            </View>
-        )
-    })
-}
-
-InsertDataToServer=() => {
-    const {Name} = this.state;
-    const {Price} = this.state;
-    console.log("responseJSON");
-        if (Name!=""){
-            fetch(this.adress,{
-                method: "POST",
-                headers: {
-                    "Accept": "application/jqson",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: Name,
-                    price: Price
-                })
-            }).then((response) => response.json()).then(responseJson => {
-                console.log(responseJson.Product[0].name);
-                console.log(responseJson);
-                alert(responseJson.message +", "+ responseJson.Product[0]);
-            }).catch((error)=>{
-                console.log(error);
-            });
-        }
-        else
-    alert("Name is empty");
-}
-
-UpdateDataToServer=() => {
-    const {Name} = this.state;
-    const {Price} = this.state;
-
-        if (Name!=""){
-            fetch(this.adress+"/"+Name, {
-                method: "PATCH",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                },
-                
-                body: JSON.stringify({
-                    name: Name,
-                    price: Price
-                })
-                
-            }).then((response) => response.json()).then(responseJson => {
-                console.log(responseJson);
-                alert("Update was successfull, "+Name);
-            }).catch((error)=>{
-                console.error(error);
-            });
-    }
-    else
-    alert("Name is empty");
-}
-
-DeleteDataFromServer=() => {
-    const {Name} = this.state;
-    const {Price} = this.state;
-
-        if (Name!=""){
-            fetch(this.adress+"/"+Name,{
-                method: "Delete",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: Name,
-                    price: Price,	 
-                    })		   
-            }).then((response) => response.json())
-                .then((responseJson) => {
-                    console.log(responseJson);
-                    alert( "Delete was successfull, "+ Name);
-                }).catch((error) => {
-                console.error(error);
-            });
-        }
-        else
-            alert("Write a name and a price.")
-        }
-        */
-
-        /* //info knapp
-            <TouchableOpacity onPress={this.InfoAnimation}>
-                <Image style={styles.iconss}
-                    source={{uri:"https://i.imgur.com/ckCwx8E.png"}}>
-                </Image>
-            </TouchableOpacity>
-        */
 
     render() {
         if (!this.props.visible) {
@@ -243,7 +93,6 @@ DeleteDataFromServer=() => {
                                     placeholderTextColor="rgba(255,255,255,0.7)"
                                     returnKeyType="next"
                                     onSubmitEditing={() => this.passwordInput.focus()}
-                                    //keyboardType="email-address"
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     style={styles.input}
@@ -307,14 +156,12 @@ const styles = StyleSheet.create({
         textAlign: "center",
         opacity: 0.9,
     },
-    
-    shadow: { //gör det transparent någonstans idk kom på något
+    shadow: {
         backgroundColor: "rgba(0,0,0,0.65)",
         width: 5000,
         height: 5000,
         position: "absolute",
     },
-    
     appleicons: {
         backgroundColor: "rgba(0,0,0,0.1)",
         paddingVertical: 11,
@@ -324,13 +171,6 @@ const styles = StyleSheet.create({
         width: 35,
         marginHorizontal: 10,
     },
-    /*
-    iconss: {
-        height: 35,
-        width: 35,
-        marginHorizontal: 100, //123 inte lika på alla skärmar
-    },
-    */
     input: {
         height: 40,
         backgroundColor: "rgba(0,0,0,0.15)",
