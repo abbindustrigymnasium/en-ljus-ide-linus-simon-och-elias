@@ -110,15 +110,15 @@ export default class Componentfunction extends React.Component {
 
     render() {
     return (
-        <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}> {/* för att få bakgrunden i en gradient av färger */}
+        <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}> 
 
-            <View style={styles.appleicons}/> {/* views kan användas för att tex placera en komponent */}
+            <View style={styles.appleicons}/> 
 
-            <View style={styles.flexdirection}> {/* eller för att ändra riktning, placering osv på flera komponenter*/}
+            <View style={styles.flexdirection}> 
 
-                <TouchableOpacity onPress={this._InfoAnimation} style={styles.positiontest}> {/* touchableopacity gör i detta fallet bilden "tryckbar" och vi la också till en onpress funktion som kör en animation*/}
+                <TouchableOpacity onPress={this._InfoAnimation} style={styles.positiontest}> 
                     <Image style={styles.icons} 
-                        source={{uri:"https://i.imgur.com/CMimq9D.png"}}> {/* bild */}
+                        source={{uri:"https://i.imgur.com/CMimq9D.png"}}>
                     </Image>
                 </TouchableOpacity>
 
@@ -136,7 +136,7 @@ export default class Componentfunction extends React.Component {
 
                 <Image style={styles.icons} 
                     opacity={0.35} 
-                    source={{uri:"https://i.imgur.com/aMWWAck.png"}}> {/* istället för att använda stylesheet */}
+                    source={{uri:"https://i.imgur.com/aMWWAck.png"}}> 
                 </Image>
                 
             </View>
@@ -144,7 +144,7 @@ export default class Componentfunction extends React.Component {
 
             <View style={styles.logoContainer}>
                 <Image style={styles.logo} source={{uri: "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/light-bulb-icon.png"}}/>
-                <Text style={styles.title}>En ljus ide</Text> {/* text */}
+                <Text style={styles.title}>En ljus ide</Text> 
             </View>
 
 
