@@ -57,7 +57,7 @@ String url="/ddosmonster/"+Lampname;
 String SendtoDB(String host){
   String type="POST";
   if(GottenValues==true) {
-    String url="/ddosmonster/";
+    String url="/products/";
       Serial.println("Skickar värde första gången");
       StaticJsonBuffer<300>jsonBuffer;
       JsonObject&root=jsonBuffer.createObject();
@@ -85,7 +85,7 @@ String SendtoDB(String host){
 }
 void ConnecttoDB(String input){
       const int httpPort=3001;
-      const char*host="http://iot.abbindustrigymnasium.se/";
+      const char*host="iot.abbindustrigymnasium.se/";
 
       Serial.print("connecting to ");
       Serial.println(host);
@@ -167,8 +167,8 @@ void UpdatingLamp(){
 
 void loop() {
     ConnecttoDB("GET");
-    UpdatingLamp();
+   // UpdatingLamp();
     delay(1000);
-    ConnecttoDB("POST");
-    delay(1000);
+   // ConnecttoDB("POST");
+    //delay(1000);
 }
