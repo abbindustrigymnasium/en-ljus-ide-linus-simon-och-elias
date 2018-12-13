@@ -60,12 +60,13 @@ String SendtoDB(String host){
     String url="/products/";
       Serial.println("Skickar värde första gången");
       StaticJsonBuffer<300>jsonBuffer;
-      JsonObject&root=jsonBuffer.createObject();
+      JsonObject& root=jsonBuffer.createObject();
       root["Name"]=Lampname;
       root["Power"]=Powervalue;
+      //root["Timer1min"]=Timervalue;//
       root["Hot"]=Hotvalue;
       root["Cold"]=Coldvalue;
-      root["SensorValue"]=SensorValue;
+      root["SensorSetting"]=SensorValue;
       String buffer;
       root.printTo(buffer);
       if(LampExist==true){
@@ -85,7 +86,7 @@ String SendtoDB(String host){
 }
 void ConnecttoDB(String input){
       const int httpPort=3001;
-      const char*host="http://iot.abbindustrigymnasium.se/";
+      const char*host="http://iot.abbindustrigymnasium.se";
 
       Serial.print("connecting to ");
       Serial.println(host);
