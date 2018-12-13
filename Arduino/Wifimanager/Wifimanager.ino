@@ -8,7 +8,7 @@
 #include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
 
 void setup() {
-    pinMode(13,OUTPUT);
+   
     
     Serial.begin(115200);
 
@@ -47,7 +47,7 @@ bool GottenValues = false;
 
 
 String GetfromDB(String host){
-String url="/ddosmonster/"+Lampname;
+String url="/products/"+Lampname;
   String Output="GET"+url+"HTTP/1.1\r\n"+
      "Host:"+host+"\r\n"+
      "\r\nConnection:close\r\n\r\n";
@@ -85,7 +85,7 @@ String SendtoDB(String host){
 }
 void ConnecttoDB(String input){
       const int httpPort=3001;
-      const char*host="iot.abbindustrigymnasium.se/";
+      const char*host="http://iot.abbindustrigymnasium.se/";
 
       Serial.print("connecting to ");
       Serial.println(host);
