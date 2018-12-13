@@ -95,7 +95,7 @@ void ConnecttoDB(String input){
       Serial.println("connection failed");
       return;
       } else {
-      digitalWrite(13,HIGH); //123
+     Serial.println("wow you did it *dab*");
       }
   
   if(input =="GET")
