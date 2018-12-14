@@ -25,11 +25,11 @@ void setup() {
     //wifiManager.setAPStaticIPConfig(IPAddress(10,0,1,1), IPAddress(10,0,1,1), IPAddress(255,255,255,0));
 
     //fetches ssid and pass from eeprom and tries to connect
-    //if it does not connect it starts an access point with the specified name
+    //if it does not connect it starts an access point with the specified LampLampName
     //here  "AutoConnectAP"
     //and goes into a blocking loop awaiting configuration
     wifiManager.autoConnect("Eliasdab");
-    //or use this for auto generated name ESP + ChipID
+    //or use this for auto generated Name ESP + ChipID
     //wifiManager.autoConnect();
 
     //if you get here you have connected to the WiFi
@@ -37,7 +37,7 @@ void setup() {
 
 }
 
-String Name = "A";
+String LampName = "A";
 bool Powervalue = false;
 bool SensorValue = false;
 int Timer1Min = 0; 
@@ -48,7 +48,7 @@ bool GottenValues = false;
 
 
 String GetfromDB(String host){
-String url= "/products/"+LampName;
+String url = "/products/"+LampName;
   String Output= "GET"+ url +"HTTP/1.1\r\n"+
      "Host:"+ host +"\r\n"+
      "\r\nConnection:close\r\n\r\n";
@@ -64,7 +64,7 @@ String SendtoDB(String host){
    
   StaticJsonBuffer<300> jsonBuffer; //Skapar en buffer, det vill säga så mycket minne som vårt blivande jsonobjekt får använda.
   JsonObject& root = jsonBuffer.createObject(); //Skapar ett jsonobjekt som vi kallar root
-   root["Name"]=Name;
+   root["LampName"]=LampName;
       root["Power"]=Powervalue;
       //root["Timer1min"]=Timervalue;//
       root["Hot"]=Hotvalue;
@@ -77,11 +77,12 @@ String SendtoDB(String host){
   type ="PATCH ";
       Serial.println("Uppdaterar värdet!");
   }
+ 
 //här någonstans ska jag anvädna POST eller PATCH beroende på om värdet finns!!!!
   // Detta skickar värdena till servern.
    String Output =type+url + " HTTP/1.1\r\n" + //Säger att det är typen post, kan vara patch, get,delete beroende på vad man vill göra., samt urlen vi ska till.
                  "Host: " + host+ "\r\n" + //Berättar vilken host det är vi ansluter till
-                 "Content-Type: application/json\r\n" + //Säger att det är Json format vi skickar (dock konverterat till en string för att kunna skickas.
+                 "Content-Type: application/json\r\n" + //Säger att det är Json format vi skickar (dock konverterat till en string för att kunna skickas).
                  "Content-Length: " + buffer.length() + "\r\n" + //Berättar hur stort packet vi ska skicka.
                  "\r\n" + // Detta är en extra radbrytning för att berätta att det är här bodyn startar.
                  buffer + "\n"; //skickar vår buffer som  body
@@ -92,10 +93,12 @@ String SendtoDB(String host){
   return "";
 }
 
+
+
 void ConnecttoDB(String input){
 
    const int httpPort = 3000; //porten vi ska till
-  const char* host = "httop://iot.abbindustrigymnasium.se";//Adressen vi ska ansluta till. 7Laddaremygglustbil "http://iot.abbindustrigymnasium.se"
+  const char* host = "http://iot.abbindustrigymnasium.se";//Adressen vi ska ansluta till. 7Laddaremygglustbil "http://iot.abbindustrigymnasium.se"
     
      Serial.print("connecting to ");
  Serial.println(host); //Skriver ut i terminalen för att veta vart vi ska skicka värdena.
@@ -108,11 +111,11 @@ void ConnecttoDB(String input){
   }
   else  //Om vi kan ansluta så ska lampa lysa
   {
-    //digitalWrite(13, HIGH);
-    }
-if(input =="GET")
+Serial.println("connected");
+}
+if(input =="GET"){
 client.print(GetfromDB(host));
-else
+} else {
 client.print(SendtoDB(host));
 
   unsigned long timeout = millis();
@@ -122,6 +125,7 @@ client.print(SendtoDB(host));
       client.stop();
       return;
     }
+  }
 
 String json = ""; //De delarna vi vill ha ut av meddelandet sparar vi i stringen json
 boolean httpBody = false; //bool för att säa att vi har kommit ner till bodydelen
@@ -144,22 +148,22 @@ while(client.available()) {
 
   Serial.println();
   Serial.println("closing connection");
-}
+
 }
 
 void UpdateValues(String json){
       //Vi skapar ett Jsonobjekt där vi klistrar in värdena från bodyn
-      Serial.print(Name);
+      Serial.print(LampName);
       StaticJsonBuffer<400> jsonBuffer;
     JsonObject& root = jsonBuffer.parseObject(json);
     //Vi skapar sedan lokala strings där vi lägger över värdena en i taget
-    String data1 = root["Name"];
+    String data1 = root["LampName"];
          if(data1!="none")
          {
       bool data2=root["Power"];
       int data3=root["Hot"];
       int data4=root["Cold"];    
-      Name=data1;
+      LampName=data1;
       Powervalue=data2;
       Hotvalue=data3;
       Coldvalue=data4;
@@ -171,7 +175,7 @@ void UpdateValues(String json){
           String Mess =root["message"];
          Serial.print(Mess);
          }
-         Serial.print(Name);
+         Serial.print(LampName);
   GottenValues = true;
 }
 
