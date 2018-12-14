@@ -1,8 +1,7 @@
 #include <ArduinoJson.h>
-#define D7 13
+
 #include <ESP8266WiFi.h>          //https://github.com/esp8266/Arduino //needed for library
 
-#include <ESP8266WiFi.h>     
 //Både ArduinoJson och Wifimanager måste installeras som bibliotek, de finns med i bibliotekskatalogen, tänk att ArduinoJSon versionen som ska väljas är 5.13 och inte senaste.     
 #include <ArduinoJson.h> // V 5.13 inte 6! https://arduinojson.org/?utm_source=meta&utm_medium=library.properties
 //needed for library
@@ -38,16 +37,16 @@ void setup() {
 
 }
 
-String Lampname = "A";
-bool Powervalue = false;
-bool SensorValue = false;
+String LampName = "A";
+bool Powervalue = true;
+bool SensorValue = true;
 int Coldvalue = 0;
 int Hotvalue = 0; 
 bool LampExist = false;
 bool GottenValues = false;
 
 String GetfromDB(String host){
-String url= "/products/"+Lampname;
+String url= "/products/"+LampName;
   String Output="GET"+ url +"HTTP/1.1\r\n"+
      "Host:"+ host +"\r\n"+
      "\r\nConnection:close\r\n\r\n";
@@ -63,7 +62,7 @@ String SendtoDB(String host){
    
   StaticJsonBuffer<300> jsonBuffer; //Skapar en buffer, det vill säga så mycket minne som vårt blivande jsonobjekt får använda.
   JsonObject& root = jsonBuffer.createObject(); //Skapar ett jsonobjekt som vi kallar root
-   root["Name"]=Lampname;
+   root["Name"]=LampName;
       root["Power"]=Powervalue;
       //root["Timer1min"]=Timervalue;//
       root["Hot"]=Hotvalue;
@@ -127,7 +126,7 @@ client.print(SendtoDB(host));
 String json = ""; //De delarna vi vill ha ut av meddelandet sparar vi i stringen json
 boolean httpBody = false; //bool för att säa att vi har kommit ner till bodydelen
 // tittar om vi har anslutit till clienten
-while (client.available()) {
+while(client.available()) {
   String line = client.readStringUntil('\r'); //Läser varje rad tills det är slut på rader
   if (!httpBody && line.charAt(1) == '{') { //Om vi hittar { så vet vi att vi har nått bodyn
     httpBody = true; //boolen blir true för att vi ska veta för nästa rad att vi redan är i bodyn
@@ -136,6 +135,7 @@ while (client.available()) {
     json += line;
   }
 }
+
 //Skriver ut bodyns data
     Serial.println("Got data:");
     Serial.println(json);
@@ -148,7 +148,7 @@ while (client.available()) {
 
 void UpdateValues(String json){
       //Vi skapar ett Jsonobjekt där vi klistrar in värdena från bodyn
-      Serial.print(Lampname);
+      Serial.print(LampName);
       StaticJsonBuffer<400> jsonBuffer;
     JsonObject& root = jsonBuffer.parseObject(json);
     //Vi skapar sedan lokala strings där vi lägger över värdena en i taget
@@ -158,7 +158,7 @@ void UpdateValues(String json){
       bool data2=root["Power"];
       int data3=root["Hot"];
       int data4=root["Cold"];    
-      Lampname=data1;
+      LampName=data1;
       Powervalue=data2;
       Hotvalue=data3;
       Coldvalue=data4;
@@ -170,7 +170,7 @@ void UpdateValues(String json){
           String Mess =root["message"];
          Serial.print(Mess);
          }
-         Serial.print(Lampname);
+         Serial.print(LampName);
   GottenValues = true;
 }
 
@@ -188,6 +188,8 @@ ConnecttoDB("GET");
 // ConnecttoDB("POST");
 //delay(10000);
 }
+
+
    //analog write, 0 -1023
 
 
