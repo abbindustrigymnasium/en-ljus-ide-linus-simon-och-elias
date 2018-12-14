@@ -38,7 +38,7 @@ void setup() {
 
 }
 
-String Lampname = "1";
+String Lampname = "A";
 bool Powervalue = false;
 bool SensorValue = false;
 int Coldvalue = 0;
@@ -47,11 +47,12 @@ bool LampExist = false;
 bool GottenValues = false;
 
 String GetfromDB(String host){
-String url="/products/"+Lampname;
-  String Output="GET"+url+"HTTP/1.1\r\n"+
-     "Host:"+host+"\r\n"+
+String url= "/products/"+Lampname;
+  String Output="GET"+ url +"HTTP/1.1\r\n"+
+     "Host:"+ host +"\r\n"+
      "\r\nConnection:close\r\n\r\n";
   return Output;
+  Serial.println(Output);
 }
 
 String SendtoDB(String host){
@@ -92,8 +93,8 @@ String SendtoDB(String host){
 
 void ConnecttoDB(String input){
 
-   const int httpPort = 3001; //porten vi ska till
-  const char* host = "http://iot.abbindustrigymnasium.se/"; //Adressen vi ska ansluta till. 7Laddaremygglustbil "http://iot.abbindustrigymnasium.se"
+   const int httpPort = 3000; //porten vi ska till
+  const char* host = "10.21.1.122"; //Adressen vi ska ansluta till. 7Laddaremygglustbil "http://iot.abbindustrigymnasium.se"
     
      Serial.print("connecting to ");
 Serial.println(host); //Skriver ut i terminalen för att veta vart vi ska skicka värdena.
@@ -109,7 +110,7 @@ Serial.println(host); //Skriver ut i terminalen för att veta vart vi ska skicka
   {
     Serial.println("WOWLAMPANLYSER");
     }
-if(input =="GET")
+if(input == "GET")
 client.print(GetfromDB(host));
 else
 client.print(SendtoDB(host));
@@ -174,8 +175,10 @@ void UpdateValues(String json){
 }
 
 void UpdatingLamp(){
-  analogWrite(13, Coldvalue);
-  Serial.println(Coldvalue);
+  if(Hotvalue>50)
+  digitalWrite(13, HIGH);
+else
+  digitalWrite(13, LOW);
 }
 
 void loop() {
