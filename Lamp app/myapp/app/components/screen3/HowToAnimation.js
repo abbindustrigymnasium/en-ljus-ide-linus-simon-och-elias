@@ -41,78 +41,72 @@ _InfoAnimationNo = () => {
             duration: 1500,
             esing: Easing.linear,
         }).start(() => {
-            Animated.timing(this.moveAnimation, {
-                toValue: { x: 0, y: -100 },
-                duration: 1500,
-                easing: Easing.linear,
-            }).start(() => {
+        Animated.timing(this.moveAnimation, {
+            toValue: { x: 120, y: -100 },
+            duration: 900,
+            esing: Easing.linear,
+        }).start(() => {
+            Animated.parallel([
+            Animated.timing(this.state.opacity, {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true,
+            }),
+                Animated.timing(this.state.opacityfar, {
+                    toValue: 0,
+                    duration: 1000,
+                    useNativeDriver: true,
+                }),
                 Animated.timing(this.moveAnimation, {
-                    toValue: { x: 120, y: -100 },
-                    duration: 900,
+                    toValue: { x: 120, y: 0 },
+                    duration: 1000,
                     esing: Easing.linear,
-                }).start(() => {
+                    }) ]).start(() => {
                     Animated.parallel([
                         Animated.timing(this.state.opacity, {
-                        toValue: 0,
-                        duration: 1000,
+                        toValue: 1,
+                        duration: 2000,
                         useNativeDriver: true,
                     }),
                         Animated.timing(this.state.opacityfar, {
-                            toValue: 0,
-                            duration: 1000,
+                            toValue: 0.5,
+                            duration: 2000,
                             useNativeDriver: true,
                         }),
                         Animated.timing(this.moveAnimation, {
-                            toValue: { x: 120, y: 0 },
-                            duration: 1000,
+                            toValue: { x: 120, y: -200 },
+                            duration: 2000,
                             esing: Easing.linear,
                         }) ]).start(() => {
                             Animated.parallel([
-                                Animated.timing(this.state.opacity, {
-                                toValue: 1,
-                                duration: 2000,
+                            Animated.timing(this.state.opacity, {
+                                toValue: 0.4,
+                                duration: 1000,
                                 useNativeDriver: true,
                             }),
                                 Animated.timing(this.state.opacityfar, {
-                                    toValue: 0.5,
-                                    duration: 2000,
+                                    toValue: 0.15,
+                                    duration: 1000,
                                     useNativeDriver: true,
                                 }),
                                 Animated.timing(this.moveAnimation, {
-                                    toValue: { x: 120, y: -200 },
-                                    duration: 2000,
+                                    toValue: { x: 120, y: -100 },
+                                    duration: 1000,
                                     esing: Easing.linear,
                                 }) ]).start(() => {
-                                    Animated.parallel([
-                                        Animated.timing(this.state.opacity, {
-                                        toValue: 0.4,
-                                        duration: 1000,
-                                        useNativeDriver: true,
-                                    }),
-                                        Animated.timing(this.state.opacityfar, {
-                                            toValue: 0.15,
-                                            duration: 1000,
-                                            useNativeDriver: true,
-                                        }),
-                                        Animated.timing(this.moveAnimation, {
-                                            toValue: { x: 120, y: -100 },
-                                            duration: 1000,
-                                            esing: Easing.linear,
-                                        }) ]).start(() => {
-                                            Animated.timing(this.moveAnimation, {
-                                                toValue: { x: 0, y: -100 },
-                                                duration: 900,
-                                                esing: Easing.linear,
-                                            }).start(() => {
+                                    Animated.timing(this.moveAnimation, {
+                                        toValue: { x: 0, y: -100 },
+                                        duration: 900,
+                                        esing: Easing.linear,
+                                    }).start(() => {
 
-                                            });
-                                        });
-                                    });
-                                });
                             });
                         });
                     });
-                }
+                });
+            });
+        });
+    }
 
     render () {
         if (!this.props.visible) {

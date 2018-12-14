@@ -159,7 +159,7 @@ export default class Componentfunction extends React.Component {
                     <Switch style={styles.button}
                         value={this.state.knapp}
                         onValueChange={(val) => {this.setState({ knapp: val }); this.UpdateDataToServer}}
-                    /> {/*  */}
+                    /> 
 
                     <Text style={styles.buttontext}>
                         Power:
@@ -338,8 +338,9 @@ const styles = StyleSheet.create({
         textAlign: "center",
         opacity: 0.9,
     },
-
+/*
     positiontest: {
         backgroundColor: "#ffffff"
     },
+*/
 });
