@@ -37,32 +37,34 @@ void setup() {
 
 }
 
-String LampName = "A";
-bool Powervalue = true;
-bool SensorValue = true;
+String Name = "A";
+bool Powervalue = false;
+bool SensorValue = false;
+int Timer1Min = 0; 
 int Coldvalue = 0;
 int Hotvalue = 0; 
 bool LampExist = false;
 bool GottenValues = false;
 
+
 String GetfromDB(String host){
 String url= "/products/"+LampName;
-  String Output="GET"+ url +"HTTP/1.1\r\n"+
+  String Output= "GET"+ url +"HTTP/1.1\r\n"+
      "Host:"+ host +"\r\n"+
      "\r\nConnection:close\r\n\r\n";
   return Output;
-  Serial.println(Output);
+  delay(1000);
 }
 
 String SendtoDB(String host){
-  String type ="POST ";
+  String type ="POST";
   if(GottenValues==true)
   {
   String url= "/products/"; //Urlen jag använder för att posta mina värden
    
   StaticJsonBuffer<300> jsonBuffer; //Skapar en buffer, det vill säga så mycket minne som vårt blivande jsonobjekt får använda.
   JsonObject& root = jsonBuffer.createObject(); //Skapar ett jsonobjekt som vi kallar root
-   root["Name"]=LampName;
+   root["Name"]=Name;
       root["Power"]=Powervalue;
       //root["Timer1min"]=Timervalue;//
       root["Hot"]=Hotvalue;
@@ -93,23 +95,22 @@ String SendtoDB(String host){
 void ConnecttoDB(String input){
 
    const int httpPort = 3000; //porten vi ska till
-  const char* host = "10.21.1.122"; //Adressen vi ska ansluta till. 7Laddaremygglustbil "http://iot.abbindustrigymnasium.se"
+  const char* host = "httop://iot.abbindustrigymnasium.se";//Adressen vi ska ansluta till. 7Laddaremygglustbil "http://iot.abbindustrigymnasium.se"
     
      Serial.print("connecting to ");
-Serial.println(host); //Skriver ut i terminalen för att veta vart vi ska skicka värdena.
+ Serial.println(host); //Skriver ut i terminalen för att veta vart vi ska skicka värdena.
   
   // Use WiFiClient class to create TCP connections
   WiFiClient client;
   if (!client.connect(host, httpPort)) { //Försöker ansluta
     Serial.println("connection failed");
-
     return;
   }
   else  //Om vi kan ansluta så ska lampa lysa
   {
-    Serial.println("WOWLAMPANLYSER");
+    //digitalWrite(13, HIGH);
     }
-if(input == "GET")
+if(input =="GET")
 client.print(GetfromDB(host));
 else
 client.print(SendtoDB(host));
@@ -121,7 +122,6 @@ client.print(SendtoDB(host));
       client.stop();
       return;
     }
-  }
 
 String json = ""; //De delarna vi vill ha ut av meddelandet sparar vi i stringen json
 boolean httpBody = false; //bool för att säa att vi har kommit ner till bodydelen
@@ -139,26 +139,27 @@ while(client.available()) {
 //Skriver ut bodyns data
     Serial.println("Got data:");
     Serial.println(json);
-  if(input =="GET") //Om det är Get så kör vi metoden UpdateValues
+  if(input == "GET") //Om det är Get så kör vi metoden UpdateValues
     UpdateValues(json);
 
   Serial.println();
   Serial.println("closing connection");
 }
+}
 
 void UpdateValues(String json){
       //Vi skapar ett Jsonobjekt där vi klistrar in värdena från bodyn
-      Serial.print(LampName);
+      Serial.print(Name);
       StaticJsonBuffer<400> jsonBuffer;
     JsonObject& root = jsonBuffer.parseObject(json);
     //Vi skapar sedan lokala strings där vi lägger över värdena en i taget
-    String data1 = root["name"];
+    String data1 = root["Name"];
          if(data1!="none")
          {
       bool data2=root["Power"];
       int data3=root["Hot"];
       int data4=root["Cold"];    
-      LampName=data1;
+      Name=data1;
       Powervalue=data2;
       Hotvalue=data3;
       Coldvalue=data4;
@@ -170,7 +171,7 @@ void UpdateValues(String json){
           String Mess =root["message"];
          Serial.print(Mess);
          }
-         Serial.print(LampName);
+         Serial.print(Name);
   GottenValues = true;
 }
 
@@ -183,10 +184,10 @@ else
 
 void loop() {
 ConnecttoDB("GET"); 
-  //UpdatingLamp();
+  UpdatingLamp();
   delay(10000);
-// ConnecttoDB("POST");
-//delay(10000);
+ ConnecttoDB("POST");
+delay(10000);
 }
 
 

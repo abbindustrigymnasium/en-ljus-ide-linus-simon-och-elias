@@ -54,7 +54,7 @@ export default class Componentfunction extends React.Component {
         });
     }
 
-    UpdateDataToServer = () => { //liknande insert men patch istället för port
+    UpdateDataToServer = () => {
         const { lampname }  = this.state ;
         const { cold }  = this.state ;
         const { hot }  = this.state ;
@@ -88,7 +88,7 @@ export default class Componentfunction extends React.Component {
         });  
     }
 
-    _InfoAnimation = () => {
+    _InfoAnimation = () => { //animation
         Animated.timing(this.Dark, {
             toValue: { x: -1000, y: -1000 },
             duration: 0,
@@ -98,7 +98,7 @@ export default class Componentfunction extends React.Component {
         });
     }
 
-    _InfoAnimationNo = () => {
+    _InfoAnimationNo = () => { //animation 
             Animated.timing(this.Dark, {
                 toValue: { x: 10000, y: 10000 },
                 duration: 0,
