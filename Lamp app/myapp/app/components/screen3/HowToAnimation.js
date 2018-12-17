@@ -3,7 +3,7 @@ import {StyleSheet, Image, Text, TouchableOpacity, View, Animated, Easing, Touch
 import { LinearGradient } from 'expo';
 
 export default class HowToAnimation extends Component {
-    constructor(props) {
+    constructor(props) { //fler states
         super(props);
         this.moveAnimation = new Animated.ValueXY({ x: 0, y:-100 })
         this.Dark = new Animated.ValueXY({ x: 10000, y: 10000 })
@@ -14,7 +14,7 @@ export default class HowToAnimation extends Component {
         }
     }
 
-_InfoAnimation = () => {
+_InfoAnimation = () => { //animationer så långt ögat kan se
     Animated.timing(this.Dark, {
         toValue: { x: -1000, y: -1000 },
         duration: 0,
@@ -114,6 +114,7 @@ _InfoAnimationNo = () => {
         }
         return (
             <View style={styles.container}>
+
                 <LinearGradient colors={['#5b86e5', '#36D1DC']} style={styles.container}>
 
                     <View style={styles.appleicons}/>
@@ -160,14 +161,18 @@ _InfoAnimationNo = () => {
                         {opacity:this.state.opacityfar},
                         ]}>
                     </Animated.View>
+
                     <View style={styles.handContainer}>
-                    <Animated.Image 
-                        source={{uri:"https://i.imgur.com/Bj5tGsC.png"}}
-                        style={[styles.imageView,
-                        this.moveAnimation.getLayout()
-                    ]}>
-                    </Animated.Image>
+
+                        <Animated.Image 
+                            source={{uri:"https://i.imgur.com/Bj5tGsC.png"}}
+                            style={[styles.imageView,
+                            this.moveAnimation.getLayout()
+                        ]}>
+                        </Animated.Image>
+
                     </View>
+
                     <View style={styles.container1}>
                         <TouchableOpacity style={styles.buttonContainer} onPress={this._lampAnimation}>
                             <Text style={styles.buttonText}>PREVIEW</Text>

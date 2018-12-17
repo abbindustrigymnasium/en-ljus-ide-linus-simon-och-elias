@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo';
 
 export default class Login extends Component {
 
-    constructor(props) {
+    constructor(props) { //mer states
         super(props);
         this.Dark = new Animated.ValueXY({ x: 10000, y: 10000 })
         this.state = {
@@ -15,13 +15,13 @@ export default class Login extends Component {
         }
     }
 
-    Load_New_Image=()=>{
+    Load_New_Image=()=>{ 
         this.setState({
             imageURL : "https://i.imgur.com/d3is5pq.png"
         })
     }
 
-    _InfoAnimation = () => {
+    _InfoAnimation = () => { //fler animationer
         Animated.timing(this.Dark, {
             toValue: { x: -1000, y: -1000 },
             duration: 0,
@@ -31,7 +31,7 @@ export default class Login extends Component {
         });
     }
 
-    _InfoAnimationNo = () => {
+    _InfoAnimationNo = () => { //ännu mer animationer 
             Animated.timing(this.Dark, {
                 toValue: { x: 10000, y: 10000 },
                 duration: 0,
@@ -52,7 +52,7 @@ export default class Login extends Component {
 
                     <View style={styles.appleicons}/>
 
-                        <KeyboardAvoidingView behavior="padding" style={styles.container}>
+                        <KeyboardAvoidingView behavior="padding" style={styles.container}> {/* allt innom detta skjhuts upp när tangentbordet kommer fram */}
 
                             <View style={styles.flexdirection}>
 
@@ -75,6 +75,7 @@ export default class Login extends Component {
                                         source={{uri:"https://i.imgur.com/aMWWAck.png"}}> 
                                     </Image>
                                 </TouchableOpacity>
+                                
                             </View>
                             
                             <View style={styles.logoContainer}>
@@ -86,7 +87,7 @@ export default class Login extends Component {
 
                             <View style={styles.container1}>
 
-                                <StatusBar barStyle="light-content"/>
+                                <StatusBar barStyle="light-content"/> {/*  */}
 
                                 <TextInput
                                     placeholder="ID"
@@ -97,7 +98,7 @@ export default class Login extends Component {
                                     autoCorrect={false}
                                     style={styles.input}
                                     underlineColorAndroid='rgba(0,0,0,0)'
-                                />
+                                /> {/* en massa olika ändrignar i hur tagnentbordet funkar som ingen autocorrect, vad som står ibörjan, i vilken färg, vad enter är, så att den inte börjar med shift */}
 
                                 <TextInput
                                     placeholder="PIN"
