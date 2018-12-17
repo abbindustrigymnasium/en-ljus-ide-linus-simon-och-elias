@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-native-slider";
 import { StyleSheet, View, Text, Switch, TouchableOpacity, Image, Animated, Easing, TouchableWithoutFeedback } from "react-native"; // importerar 
 import { LinearGradient } from 'expo'; //ibland måste man specificera vart ifrån man importerar
-
+console.disableYellowBox = true; //tar bort varning
 export default class Componentfunction extends React.Component { 
     constructor(props) { //här lägger vi några states som vi senare kan ändra på
         super(props);
