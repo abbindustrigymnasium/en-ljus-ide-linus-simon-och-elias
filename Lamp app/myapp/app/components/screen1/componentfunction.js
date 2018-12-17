@@ -50,7 +50,7 @@ export default class Componentfunction extends React.Component {
             console.log(responseJson);  //skriver json data i consolen
             console.log(this.state);    //skriver vad som är i statevariabeln 
         }).catch((error) => {   //fångar error
-            console.error(error);   //skriver error i colsolen
+            console.error(error);   //skriver error i consolen
         });
     }
 
@@ -88,7 +88,7 @@ export default class Componentfunction extends React.Component {
         });  
     }
 
-    _InfoAnimation = () => { //animation som vi kan köra i return som i detta fall skickar vår view shadow till helvete och vidare 
+    _InfoAnimation = () => { //denna för den tillbaka
         Animated.timing(this.Dark, {
             toValue: { x: -1000, y: -1000 },
             duration: 0,
@@ -98,7 +98,7 @@ export default class Componentfunction extends React.Component {
         });
     }
 
-    _InfoAnimationNo = () => { //denna för den tillbaka
+    _InfoAnimationNo = () => { //animation som vi kan köra i return som i detta fall skickar vår view shadow till helvete och vidare 
             Animated.timing(this.Dark, {
                 toValue: { x: 10000, y: 10000 },
                 duration: 0,
