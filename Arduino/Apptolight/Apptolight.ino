@@ -5,11 +5,29 @@
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
-#define D7 13 // SPI Bus MOSI
+#define AI_Pot 0 
+#define DO_LedHot 12 //Ledstripsport för varma
+#define DO_LedCold 13
 
-void setup() {
-      pinMode(13, OUTPUT); //Declare GPIO13 as output
- 
+
+typedef enum HandStates{
+  UpdatingValues,
+  Hand,
+  Hand2,
+  NoHand,
+  NoHand2,
+  HotCheck,
+  HotUpdate,
+  ColdCheck,
+  ColdUpdate,
+  Power
+};
+
+HandStates HState;
+
+void setup() {    pinMode(13, OUTPUT);
+ pinMode(13, OUTPUT);//Declare GPIO13 as output
+  HState = UpdatingValues;
     // put your setup code here, to run once:
     Serial.begin(115200);
   //Från Wifimanagers hemsida.
@@ -34,13 +52,15 @@ void setup() {
     Serial.println("connected...yeey :)");
 
 }
-
- String Lampname="A"; //Lampans namn
+  // put your setup code here, to run once:
+String Lampname="A"; //Lampans namn
  int Coldvalue= 0; //Hårdheten
  int Hotvalue= 0; //Styrkan
  bool Powervalue = 0; 
  bool Sensorsetting = 0; 
  int Timervalue = 0;  
+ int PotValue = 0; //
+ int ZeroValue = 0;
  bool LampExist=false; //Finns lampan redan eller är den ny?
  bool GottenValues = false; //Har vi hämtat några värden redan från databasen?
 
@@ -51,6 +71,7 @@ String url= "/products/"+Lampname; //Urlen jag använder för att posta mina vä
                  "Host: " + host+ "\r\n" + //Berättar vilken host det är vi ansluter till
                  "\r\nConnection: close\r\n\r\n"; //skickar vår buffer som  body
  return Output;
+
 }
 
 String SendtoDB(String host){
@@ -167,7 +188,8 @@ void UpdateValues(String json){
      Coldvalue = dataF;
 
        LampExist=true;
-     Serial.print(Hotvalue);
+     Serial.print(Coldvalue);
+     
 }
          else
          {
@@ -177,26 +199,130 @@ void UpdateValues(String json){
 
          }
          Serial.println("2"+Lampname);
-  GottenValues = true;
+ GottenValues = true;
 }
 
 void UpdatingLamp(){
   if(Hotvalue>50)
-  digitalWrite(13, HIGH);
+  Serial.println("coolshit");
 else
-  digitalWrite(13, LOW);
+  Serial.println("uncoolshit");
 }
-
 void loop() {
+   switch (HState){
+  case UpdatingValues: 
  ConnecttoDB("GET"); 
   UpdatingLamp();
   delay(1000);
   ConnecttoDB("POST");
+HState = Power;
+  // put your main code here, to run repeatedly:
+
+    case Power:
+    delay(100);
+    if (Powervalue = false) {
+    HState = Power;
+    Serial.println("OFF");
+    } else { 
+   analogWrite(DO_LedHot,0);
+   analogWrite(DO_LedCold, 0);
+    }
+   /* if (Sensorsetting = true) { 
+      HState = NoHand;
+    } else {
+      HState = ColdCheck;
+    }*/
+    HState = HotCheck;
+    break;
+     
+      case NoHand:
+      PotValue = analogRead(AI_Pot);
+      Serial.println(PotValue);
+      delay(100);
+    if (PotValue > 25)  {
+      HState = Hand;
+    } else {
+      Serial.print("a");
+      HState = Power;
+    }
+  break;
+   case Hand:
+      PotValue = analogRead(AI_Pot);
+      Serial.println(PotValue);
+      delay(100);
+    if (PotValue < 25)  {
+      HState = NoHand2;
+    } else {
+      Serial.print("b");
+      HState = Hand;
+    }    
+    case NoHand2:
+      for (int q=0; q <= 50; q++){
+        PotValue = analogRead(AI_Pot);
+        Serial.println(PotValue);
+        delay(100);
+      if (PotValue > 25) {
+        HState = Hand2;
+        break;
+      } else {
+        Serial.print("c");
+        }
+      }
+    if (PotValue < 25){
+      HState = NoHand;
+    }
+  break;
+   case Hand2:
+      PotValue = analogRead(AI_Pot);
+      Serial.println(PotValue);
+      if (PotValue < 25) {
+        HState=NoHand;
+      } 
+      else {
+      Serial.print("d");
+      analogWrite(DO_LedCold, PotValue);
+      delay(100);
+      HState = Hand2;
+      }
+  break;
+  case HotCheck:
+    Serial.println(Hotvalue);
+    delay(100); 
+    if (Hotvalue >=0) {
+      HState = HotUpdate ;
+    } else {
+      Serial.print("HotCheck");
+      HState = ColdCheck;
+    }    
+  break;
+   case HotUpdate:        
+         Serial.println(Hotvalue);
+         delay(100);
+         analogWrite(DO_LedHot, Hotvalue);
+         HState = ColdCheck ;
+  break;
+
+   case ColdCheck:
+    Serial.println(Coldvalue);
+    delay(100); 
+    if (Coldvalue >= 0) {
+      HState = ColdUpdate;
+    }
+  break;
+    
+    case ColdUpdate:        
+         Serial.println(Coldvalue);
+         delay(100);
+         analogWrite(DO_LedCold, Coldvalue);
+         HState = UpdatingValues;      
+ 
 
 }
-   //analog write, 0 -1023
+}
 
  
-  // digitalWrite(13, LOW);
 
-    
+
+
+
+
