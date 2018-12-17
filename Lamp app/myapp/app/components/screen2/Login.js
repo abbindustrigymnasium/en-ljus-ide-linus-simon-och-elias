@@ -54,6 +54,7 @@ export default class Login extends Component {
 
                         <KeyboardAvoidingView behavior="padding" style={styles.container}> {/* allt innom detta skjhuts upp när tangentbordet kommer fram */}
 
+
                             <View style={styles.flexdirection}>
 
                                 <TouchableOpacity onPress={this._InfoAnimation}>
@@ -87,7 +88,7 @@ export default class Login extends Component {
 
                             <View style={styles.container1}>
 
-                                <StatusBar barStyle="light-content"/> {/*  */}
+                                <StatusBar barStyle="light-content"/>
 
                                 <TextInput
                                     placeholder="ID"
