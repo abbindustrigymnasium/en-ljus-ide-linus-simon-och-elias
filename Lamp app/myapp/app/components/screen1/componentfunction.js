@@ -161,7 +161,7 @@ export default class Componentfunction extends React.Component {
             <View style={styles.container}>
 
                 <View style={styles.flexdirectionbutton}>
-
+{/*
                     <Text style={styles.buttontext}>
                         Sensor:
                     </Text>
@@ -169,8 +169,8 @@ export default class Componentfunction extends React.Component {
                     <Switch style={styles.button}
                         value={this.state.knapp}
                         onValueChange={(val) => {this.setState({ knapp: val }); this.UpdateDataToServer}}
-                    /> {/* istället för en touchable opacity eller button så lägger vi till en switch som är default iphone eller android swichen man är bekant med */}
-
+                    /> 
+*/}
                     <Text style={styles.buttontext}>
                         Power:
                     </Text>
@@ -178,7 +178,7 @@ export default class Componentfunction extends React.Component {
                     <Switch style={styles.button}
                         value={this.state.power}
                         onValueChange={(val) => {this.setState({ power: val }); this.UpdateDataToServer}}
-                    />
+                    /> {/* istället för en touchable opacity eller button så lägger vi till en switch som är default iphone eller android swichen man är bekant med */}
                 
                 </View>
 
@@ -291,7 +291,8 @@ const styles = StyleSheet.create({ //stylesheet är i princip css
     },
     buttontext: {
         fontSize: 15,
-        color: "rgba(255,255,255,0.9)"
+        color: "rgba(255,255,255,0.9)",
+        marginRight: 15, //utan i 2 switches
     },
     appleicons: {
         backgroundColor: "rgba(0,0,0,0.1)",
@@ -328,7 +329,7 @@ const styles = StyleSheet.create({ //stylesheet är i princip css
     flexdirectionbutton: {
         flex: 1,
         flexDirection: "row",
-        justifyContent: "space-around",
+        justifyContent: "center", //space around 2 switches
         alignItems: "center",
     },
 
