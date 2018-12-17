@@ -74,8 +74,6 @@ export default class ScreenHome extends React.Component {
             showComponent={ (component) => this.showComponent(component) }
             visible={ this.state.componentfunctionVisible }
             />
-
-            
         );
     }
 };
