@@ -203,9 +203,9 @@ void UpdateValues(String json){
 
 void UpdatingLamp(){
   if(Hotvalue>50)
-  digitalWrite(13, HIGH);
+  Serial.println("coolshit");
 else
-  digitalWrite(13, LOW);
+  Serial.println("uncoolshit");
 }
 void loop() {
    switch (HState){
@@ -214,7 +214,7 @@ void loop() {
   UpdatingLamp();
   delay(1000);
   ConnecttoDB("POST");
-
+HState = Power;
   // put your main code here, to run repeatedly:
 
     case Power:
