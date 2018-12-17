@@ -6,11 +6,12 @@
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
 #define AI_Pot 0 
-#define DO_LedHot 13 //Ledstripsport för varma
-#define DO_LedCold 14
-#define D7 13 // SPI Bus MOSI
+#define DO_LedHot 12 //Ledstripsport för varma
+#define DO_LedCold 13
+
 
 typedef enum HandStates{
+  UpdatingValues,
   Hand,
   Hand2,
   NoHand,
@@ -19,8 +20,7 @@ typedef enum HandStates{
   HotUpdate,
   ColdCheck,
   ColdUpdate,
-  Power,
-  UpdatingValues
+  Power
 };
 
 HandStates HState;
@@ -188,7 +188,8 @@ void UpdateValues(String json){
      Coldvalue = dataF;
 
        LampExist=true;
-     Serial.print(Hotvalue);
+     Serial.print(Coldvalue);
+     
 }
          else
          {
@@ -226,11 +227,12 @@ HState = Power;
    analogWrite(DO_LedHot,0);
    analogWrite(DO_LedCold, 0);
     }
-    if (Sensorsetting = true) { 
+   /* if (Sensorsetting = true) { 
       HState = NoHand;
     } else {
       HState = ColdCheck;
-    }
+    }*/
+    HState = HotCheck;
     break;
      
       case NoHand:
@@ -286,7 +288,7 @@ HState = Power;
   case HotCheck:
     Serial.println(Hotvalue);
     delay(100); 
-    if (Hotvalue <=0) {
+    if (Hotvalue >=0) {
       HState = HotUpdate ;
     } else {
       Serial.print("HotCheck");
@@ -303,7 +305,7 @@ HState = Power;
    case ColdCheck:
     Serial.println(Coldvalue);
     delay(100); 
-    if (Coldvalue <= 0) {
+    if (Coldvalue >= 0) {
       HState = ColdUpdate;
     }
   break;
