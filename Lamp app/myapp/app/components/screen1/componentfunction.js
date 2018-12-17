@@ -13,7 +13,7 @@ export default class Componentfunction extends React.Component {
             hot: 100,
             knapp: false,
             power: false,
-            fetch: 'http://iot.abbindustrigymnasium.se:3001/products/'
+            fetch: 'http://iot.abbindustrigymnasium.se:3000/products/'
         }
     }
 
@@ -43,15 +43,25 @@ export default class Componentfunction extends React.Component {
   
     componentDidMount() { //detta körs när allt är inladdat
         let self = this; //vi kallar this för self för att lättare använda dock så använder vi ej det men jag skrev inte denna rad
-        fetch(this.state.fetch+this.state.lampname, {  //urlen där vi vill skicka ifrån (detta är datorns ipadress, hämtas via ipconfig i cmd, ip4)
+        fetch('http://iot.abbindustrigymnasium.se:3000/products/', {  //urlen där vi vill skicka ifrån (detta är datorns ipadress, hämtas via ipconfig i cmd, ip4)
             method: 'GET'  //säger att det är get vi vill använda
         }).then((response) => response.json())  //gör om resultatet till json
         .then((responseJson) => {
+            responseJson=responseJson[0];
             console.log(responseJson);  //skriver json data i consolen
-            console.log(this.state);    //skriver vad som är i statevariabeln 
+            console.log(this.state);    //skriver vad som är i statevariabeln  
+            console.log(responseJson.Cold);
+            this.setState({cold: responseJson.Cold});
+            console.log(responseJson.Hot);
+            this.setState({hot: responseJson.Hot});
+            console.log(responseJson.Power);
+            this.setState({power: responseJson.Power});
+            console.log(responseJson.SensorSetting);
+            this.setState({knapp: responseJson.SensorSetting});
         }).catch((error) => {   //fångar error
             console.error(error);   //skriver error i consolen
         });
+    console.log("Hasse");
     }
 
     UpdateDataToServer = () => {
@@ -136,8 +146,8 @@ export default class Componentfunction extends React.Component {
 
                 <Image style={styles.icons} 
                     opacity={0.35} 
-                    source={{uri:"https://i.imgur.com/aMWWAck.png"}}> {/* man kan istället för att skriva i stylesheet skriva till tex opacity i returnen som vi gör här */}
-                </Image>
+                    source={{uri:"https://i.imgur.com/aMWWAck.png"}}>
+                </Image> {/* man kan istället för att skriva i stylesheet skriva till tex opacity i returnen som vi gör här */}
                 
             </View>
             
@@ -236,14 +246,14 @@ export default class Componentfunction extends React.Component {
                     </Text>
                 </View>
 
-                <TouchableWithoutFeedback onPress={this._InfoAnimationNo}> {/* vi gör shadown till en stor knapp så du kan trycka överallt för att få bort den  */}
+                <TouchableWithoutFeedback onPress={this._InfoAnimationNo}> 
                     <Animated.View
                         style={[styles.shadow,
                         {opacity:this.opacity},
                         this.Dark.getLayout(),
                         ]}>
                     </Animated.View>
-                </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>{/* vi gör shadown till en stor knapp så du kan trycka överallt för att få bort den */}
 
             </View>
 
