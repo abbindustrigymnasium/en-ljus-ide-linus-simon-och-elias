@@ -10,7 +10,7 @@
 #define DO_LedCold 13
 
 
-typedef enum HandStates{
+typedef enum HandStates{ //STATES
   UpdatingValues,
   Hand,
   Hand2,
@@ -23,7 +23,7 @@ typedef enum HandStates{
   Power
 };
 
-HandStates HState;
+HandStates HState; //förkortar states
 
 void setup() {    pinMode(13, OUTPUT);
  pinMode(13, OUTPUT);//Declare GPIO13 as output
@@ -56,15 +56,15 @@ void setup() {    pinMode(13, OUTPUT);
 String Lampname="A"; //Lampans namn
  int Coldvalue= 0; //Hårdheten
  int Hotvalue= 0; //Styrkan
- bool Powervalue = 0; 
- bool Sensorsetting = 0; 
- int Timervalue = 0;  
- int PotValue = 0; //
- int ZeroValue = 0;
+ bool Powervalue = 0; //på/av
+ bool Sensorsetting = 0; //på/av sensor 
+ int Timervalue = 0;  //timer i minut
+ int PotValue = 0; //anv'nds inte
+ int ZeroValue = 0; //anv'nds inte
  bool LampExist=false; //Finns lampan redan eller är den ny?
  bool GottenValues = false; //Har vi hämtat några värden redan från databasen?
 
-String GetfromDB(String host){
+String GetfromDB(String host){ //get
 String url= "/products/"+Lampname; //Urlen jag använder för att posta mina värden
   // Detta skickar värdena till servern.
    String Output ="GET "+ url + " HTTP/1.1\r\n" + //Säger att det är typen post, kan vara patch, get,delete beroende på vad man vill göra., samt urlen vi ska till.
@@ -74,7 +74,7 @@ String url= "/products/"+Lampname; //Urlen jag använder för att posta mina vä
 
 }
 
-String SendtoDB(String host){
+String SendtoDB(String host){//send
   String type ="POST ";
   if(GottenValues==true)
   {
@@ -136,7 +136,7 @@ client.print(SendtoDB(host));
   unsigned long timeout = millis();
   while (client.available() == 0) {
     if (millis() - timeout > 10000) {
-      Serial.println(">>> Client Timeout !");
+      Serial.println(">>> Client Timeout !"); //om det inte händer något så ska clienten stängas av
       client.stop();
       return;
     }
@@ -173,11 +173,11 @@ void UpdateValues(String json){
     String dataA = root["Name"];
          if(dataA!="none")
          {
-    bool dataB = root["Power"];
+    bool dataB = root["Power"]; 
     bool dataC = root["SensorSetting"];
     int dataD = root["Timer1min"];
     int dataE = root["Hot"];
-    int dataF = root["Cold"];
+    int dataF = root["Cold"]; //döper samtliga values
     
     //Därefter skriver vi över de lokala värdena till våra globala värden för lampan
      Lampname = dataA; 
@@ -187,18 +187,18 @@ void UpdateValues(String json){
      Hotvalue = dataE;
      Coldvalue = dataF;
 
-       LampExist=true;
-     Serial.print(Coldvalue);
+       LampExist=true; //ändra bool
+     Serial.print(Coldvalue); //debug
      
 }
          else
          {
 
           String Mess =root["message"];
-         Serial.print(Mess);
+         Serial.print(Mess); //errmess
 
          }
-         Serial.println("2"+Lampname);
+         Serial.println("2"+Lampname); //debug
  GottenValues = true;
 }
 
@@ -206,23 +206,23 @@ void UpdatingLamp(){
   if(Hotvalue>50)
   Serial.println("coolshit");
 else
-  Serial.println("uncoolshit");
+  Serial.println("uncoolshit"); //more debug
 }
 void loop() {
-   switch (HState){
+   switch (HState){ //switchcase:
   case UpdatingValues: 
  ConnecttoDB("GET"); 
   UpdatingLamp();
   delay(1000);
   ConnecttoDB("POST");
-HState = Power;
-  // put your main code here, to run repeatedly:
+HState = Power; //börja med power
 
-    case Power:
+
+    case Power: // kollar efter power, är den av så ska den fastna här
     delay(100);
     if (Powervalue = false) {
     HState = Power;
-    Serial.println("OFF");
+    Serial.println("OFF"); //debug skriv av
     } else { 
    analogWrite(DO_LedHot,0);
    analogWrite(DO_LedCold, 0);
@@ -231,19 +231,19 @@ HState = Power;
       HState = NoHand;
     } else {
       HState = ColdCheck;
-    }*/
-    HState = HotCheck;
+    }*/ //fick aldrig sensorsetting att funka, skulle annars gå till handsystemet
+    HState = HotCheck; //fortsätt programmet
     break;
      
       case NoHand:
-      PotValue = analogRead(AI_Pot);
+      = analogRead(AI_Pot);
       Serial.println(PotValue);
       delay(100);
-    if (PotValue > 25)  {
-      HState = Hand;
+    if (PotValue > 25)  { //om potvalue är mer än 25 fortsätt (är för sensorn)
+      HState = Hand; //fortsätt
     } else {
       Serial.print("a");
-      HState = Power;
+      HState = Power; //nollställ
     }
   break;
    case Hand:
@@ -254,7 +254,7 @@ HState = Power;
       HState = NoHand2;
     } else {
       Serial.print("b");
-      HState = Hand;
+      HState = Hand; 
     }    
     case NoHand2:
       for (int q=0; q <= 50; q++){
@@ -276,7 +276,7 @@ HState = Power;
       PotValue = analogRead(AI_Pot);
       Serial.println(PotValue);
       if (PotValue < 25) {
-        HState=NoHand;
+        HState=HotCheck;
       } 
       else {
       Serial.print("d");
@@ -285,11 +285,11 @@ HState = Power;
       HState = Hand2;
       }
   break;
-  case HotCheck:
+  case HotCheck:   //här börjar appen
     Serial.println(Hotvalue);
     delay(100); 
-    if (Hotvalue >=0) {
-      HState = HotUpdate ;
+    if (Hotvalue >=0) { //alltid
+      HState = HotUpdate ; //fortsätt
     } else {
       Serial.print("HotCheck");
       HState = ColdCheck;
@@ -298,15 +298,15 @@ HState = Power;
    case HotUpdate:        
          Serial.println(Hotvalue);
          delay(100);
-         analogWrite(DO_LedHot, Hotvalue);
-         HState = ColdCheck ;
+         analogWrite(DO_LedHot, Hotvalue); //uppdatera värden
+         HState = ColdCheck ; //gå till cold
   break;
 
-   case ColdCheck:
+   case ColdCheck://gör hotcheck med coldvalue
     Serial.println(Coldvalue);
     delay(100); 
-    if (Coldvalue >= 0) {
-      HState = ColdUpdate;
+    if (Coldvalue >= 0) { 
+      HState = ColdUpdate; 
     }
   break;
     
@@ -314,7 +314,7 @@ HState = Power;
          Serial.println(Coldvalue);
          delay(100);
          analogWrite(DO_LedCold, Coldvalue);
-         HState = UpdatingValues;      
+         HState = Power;      
  
 
 }
